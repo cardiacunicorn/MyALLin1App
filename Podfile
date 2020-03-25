@@ -6,7 +6,8 @@ target 'MyALLin1' do
   use_frameworks!
 
   # Pods for MyALLin1
-  pod 'FBSDKLoginKit'
+  pod 'FacebookCore'
+  pod 'FacebookLogin'
 
   target 'MyALLin1Tests' do
     inherit! :search_paths
@@ -14,7 +15,7 @@ target 'MyALLin1' do
   end
 
   target 'MyALLin1UITests' do
-    # Pods for testing
+    # Pods for UI testing
   end
 
 end
