@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import FacebookLogin
+import FBSDKCoreKit
 
 class LoginViewController: UIViewController {
 
@@ -14,8 +16,19 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         print("Login view loaded.")
-    }
+        
+        let loginButton = FBLoginButton(permissions: [ .publicProfile, .email ])
+        loginButton.center = view.center
 
+        view.addSubview(loginButton)
+        
+        // This is how you would check that a user is in a logged in state:
+        if let accessToken = AccessToken.current {
+            // User is logged in, use 'accessToken' here.
+            print("User is successfully logged in through Facebook.\nAccess token: \(accessToken)")
+        }
+        
+    }
 
 }
 
