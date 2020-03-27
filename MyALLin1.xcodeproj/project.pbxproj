@@ -143,10 +143,10 @@
 			children = (
 				FA603BC4242706C1007B47E7 /* View */,
 				FA603BC62427074E007B47E7 /* View Controller */,
-				FA603BC5242706F6007B47E7 /* Controller */,
 				FA603BC2242706A7007B47E7 /* Model */,
-				FA603B9B24270574007B47E7 /* Assets.xcassets */,
+				FA603BC5242706F6007B47E7 /* Application */,
 				FA603BA024270574007B47E7 /* Info.plist */,
+				FA603B9B24270574007B47E7 /* Assets.xcassets */,
 			);
 			path = MyALLin1;
 			sourceTree = "<group>";
@@ -186,13 +186,13 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		FA603BC5242706F6007B47E7 /* Controller */ = {
+		FA603BC5242706F6007B47E7 /* Application */ = {
 			isa = PBXGroup;
 			children = (
 				FA603B8F2427056E007B47E7 /* AppDelegate.swift */,
 				FA603B912427056E007B47E7 /* SceneDelegate.swift */,
 			);
-			path = Controller;
+			path = Application;
 			sourceTree = "<group>";
 		};
 		FA603BC62427074E007B47E7 /* View Controller */ = {
