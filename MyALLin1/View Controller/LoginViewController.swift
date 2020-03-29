@@ -40,11 +40,6 @@ class LoginViewController: UIViewController {
         // Do any additional setup after loading the view.
         print("Login view loaded.")
         
-        let loginButton = FBLoginButton(permissions: [ .publicProfile, .email ])
-        loginButton.center = view.center
-
-        view.addSubview(loginButton)
-        
         // This is how you would check that a user is in a logged in state:
         if let accessToken = AccessToken.current {
             // User is logged in, use 'accessToken' here.
