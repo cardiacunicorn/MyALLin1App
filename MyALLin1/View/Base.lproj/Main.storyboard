@@ -87,7 +87,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OB0-pn-c0V">
-                                <rect key="frame" x="60" y="259" width="200" height="50"/>
+                                <rect key="frame" x="60" y="74" width="200" height="50"/>
                                 <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="6Zy-mm-h4R"/>
@@ -102,11 +102,28 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NnE-sX-hAr">
+                                <rect key="frame" x="110" y="138" width="100" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="Rsh-6Y-lgx"/>
+                                    <constraint firstAttribute="height" constant="50" id="zfQ-1R-yjr"/>
+                                </constraints>
+                                <state key="normal" title="Log out">
+                                    <color key="titleColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="efW-Q1-1cz" secondAttribute="trailing" id="3IY-oX-k40"/>
-                            <constraint firstItem="OB0-pn-c0V" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" constant="24.5" id="dvM-Dg-Q2c"/>
+                            <constraint firstItem="NnE-sX-hAr" firstAttribute="top" secondItem="OB0-pn-c0V" secondAttribute="bottom" constant="14" id="8LF-Ed-j7D"/>
+                            <constraint firstItem="NnE-sX-hAr" firstAttribute="centerX" secondItem="OB0-pn-c0V" secondAttribute="centerX" id="AdN-bf-giO"/>
+                            <constraint firstItem="OB0-pn-c0V" firstAttribute="top" secondItem="efW-Q1-1cz" secondAttribute="bottom" constant="24" id="ZBp-FA-W2O"/>
                             <constraint firstItem="efW-Q1-1cz" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="k5U-HP-1zW"/>
                             <constraint firstItem="efW-Q1-1cz" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ngx-oN-ekk"/>
                             <constraint firstItem="OB0-pn-c0V" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="o0f-NA-jjy"/>
