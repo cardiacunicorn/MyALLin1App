@@ -8,6 +8,7 @@ target 'MyALLin1' do
   # Pods for MyALLin1
   pod 'FacebookCore'
   pod 'FacebookLogin'
+  pod 'TwitterKit'
 
   target 'MyALLin1Tests' do
     inherit! :search_paths
