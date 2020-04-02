@@ -221,7 +221,7 @@
         <!--Map-->
         <scene sceneID="in9-KL-bNc">
             <objects>
-                <viewController id="T2w-0v-FqE" sceneMemberID="viewController">
+                <viewController id="T2w-0v-FqE" customClass="MapViewController" customModule="MyALLin1" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pUQ-XS-ab2">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -233,19 +233,25 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="g1w-2x-Ra7">
-                                <rect key="frame" x="16" y="89" width="288" height="316"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="RQp-Pu-2zA">
+                                <rect key="frame" x="16" y="49" width="288" height="470"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="T2w-0v-FqE" id="IZr-mU-5MI"/>
+                                </connections>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="b9j-MW-rA1"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Map" image="map" catalog="system" selectedImage="map.fill" id="2rh-xv-I4G"/>
+                    <connections>
+                        <outlet property="mapView" destination="RQp-Pu-2zA" id="Exd-A1-at1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rin-Rj-XjO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1601" y="136"/>
+            <point key="canvasLocation" x="1599.375" y="135.21126760563379"/>
         </scene>
         <!--Weather-->
         <scene sceneID="p0B-BY-zbr">
