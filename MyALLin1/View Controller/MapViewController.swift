@@ -25,14 +25,23 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         locationManager.distanceFilter = kCLDistanceFilterNone
         locationManager.startUpdatingLocation()
         centerViewOnUserLocation()
+        filterPointsOfInterest()
         mapView.showsUserLocation = true
     }
     
     func centerViewOnUserLocation() {
         if let location = locationManager.location?.coordinate {
         let region = MKCoordinateRegion.init(center: location, latitudinalMeters: 500, longitudinalMeters: 500)
+        
         mapView.setRegion(region, animated: true)
         }
+    }
+    
+    func filterPointsOfInterest() {
+        let categories:[MKPointOfInterestCategory] = [.cafe]
+        let filters = MKPointOfInterestFilter(including: categories)
+        
+        mapView.pointOfInterestFilter = .some(filters)
     }
     
 }
