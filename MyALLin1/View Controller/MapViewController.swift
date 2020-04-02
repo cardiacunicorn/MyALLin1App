@@ -24,8 +24,15 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.distanceFilter = kCLDistanceFilterNone
         locationManager.startUpdatingLocation()
-        
+        centerViewOnUserLocation()
         mapView.showsUserLocation = true
-        
     }
+    
+    func centerViewOnUserLocation() {
+        if let location = locationManager.location?.coordinate {
+        let region = MKCoordinateRegion.init(center: location, latitudinalMeters: 500, longitudinalMeters: 500)
+        mapView.setRegion(region, animated: true)
+        }
+    }
+    
 }
