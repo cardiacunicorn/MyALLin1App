@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import FacebookCore
+import TwitterKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,15 +19,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+        // Initialises TwitterKit with our API credentials
+        TWTRTwitter.sharedInstance().start(withConsumerKey: "0bxAILPpJ4gORixVzWJfahjRV", consumerSecret: "zaDny7HAqqirRrFvrQ6SBq0s9eCuYTBAcBRKrMjqR2UmNXEz5G")
+        
         // Initialises the Facebook SDK
         ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         
         return true
     }
     
-    // Initialises the Facebook SDK
+    // Receives log in credentials from external applications (e.g. Facebook, Twitter)
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-      return ApplicationDelegate.shared.application(app, open: url, options: options)
+        
+        /* The below lines look to perform the same task, the second in a more general way, but were both mentioned by their respective Dev guides */
+        
+        // Twitter's old support docs wants this here
+        if TWTRTwitter.sharedInstance().application(app, open: url, options: options) {
+           return true
+        }
+        
+        // Facebook wants this here
+        return ApplicationDelegate.shared.application(app, open: url, options: options)
     }
 
     // MARK: UISceneSession Lifecycle

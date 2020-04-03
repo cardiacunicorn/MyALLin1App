@@ -90,8 +90,14 @@
       <key>CFBundleURLSchemes</key>
       <array>
         <string>fb2333024443665043</string>
+        <string>twitterkit-0bxAILPpJ4gORixVzWJfahjRV</string>
       </array>
       </dict>
+    </array>
+    <key>LSApplicationQueriesSchemes</key>
+    <array>
+        <string>twitter</string>
+        <string>twitterauth</string>
     </array>
 </dict>
 </plist>
