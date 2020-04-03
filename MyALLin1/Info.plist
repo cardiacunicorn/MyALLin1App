@@ -90,8 +90,13 @@
       <key>CFBundleURLSchemes</key>
       <array>
         <string>fb2333024443665043</string>
-        <string>twitterkit-0bxAILPpJ4gORixVzWJfahjRV</string>
       </array>
+      </dict>
+      <dict>
+          <key>CFBundleURLSchemes</key>
+          <array>
+              <string>twitterkit-0bxAILPpJ4gORixVzWJfahjRV</string>
+          </array>
       </dict>
     </array>
     <key>LSApplicationQueriesSchemes</key>

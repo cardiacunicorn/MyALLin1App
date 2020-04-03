@@ -9,20 +9,63 @@
 import UIKit
 import FacebookLogin
 import FBSDKCoreKit
+import TwitterKit
 
-class LoginViewController: UIViewController {
-
+class LoginViewController: UIViewController, TWTRComposerViewControllerDelegate{
+    
+    // MARK: Button(s)
     @IBAction func loginButton(_ sender: Any) {
-        let loginManager = LoginManager()
-        loginManager.logIn(
-            permissions: [.publicProfile, .userFriends],
-            viewController: self
-        ) { result in
-            self.loginManagerDidComplete(result)
-        }
+        
+        // Facebook section
+//        let loginManager = LoginManager()
+//        loginManager.logIn(
+//            permissions: [.publicProfile, .userFriends],
+//            viewController: self
+//        ) { result in
+//            self.loginManagerDidComplete(result)
+//        }
+        
+        // Twitter section
+        
+        // Currently failing, due to inability to interpret 'twitterauth://' in Simulator's request
+        
+            if (TWTRTwitter.sharedInstance().sessionStore.hasLoggedInUsers()) {
+                // App must have at least one logged-in user to compose a Tweet
+               
+                guard let shareImg2 = UIImage.init(named: "uk") else {
+                    print("failed init share img")
+                    return
+                }
+                let composer = TWTRComposerViewController.init(initialText: "UK flag picture will be tweeted", image: shareImg2, videoURL: nil)
+                composer.delegate = self
+                present(composer, animated: true, completion: nil)
+                
+            } else {
+                // Log in, and then check again
+                TWTRTwitter.sharedInstance().logIn { session, error in
+                    if session != nil { // Log in succeeded
+                        
+                        guard let shareImg2 = UIImage.init(named: "usa") else {
+                            print("failed init share img")
+                            return
+                        }
+                        let composer = TWTRComposerViewController.init(initialText: "USA flag picture will be tweeted", image: shareImg2, videoURL: nil)
+                        composer.delegate = self
+                        self.present(composer, animated: true, completion: nil)
+                        
+                        
+                        
+                    } else {
+                        let alert = UIAlertController(title: "No Twitter Accounts Available", message: "You must log in before presenting a composer.", preferredStyle: .alert)
+                        self.present(alert, animated: false, completion: nil)
+                    }
+                }
+            }
+        
     }
     
     @IBAction func logoutButton(_ sender: Any) {
+        // Facebook section
         let loginManager = LoginManager()
         loginManager.logOut()
 
@@ -35,6 +78,7 @@ class LoginViewController: UIViewController {
         present(alertController, animated: true, completion: nil)
     }
     
+    // MARK: ViewController Functions
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -48,6 +92,20 @@ class LoginViewController: UIViewController {
         
     }
     
+    // MARK: Twitter Compose Delegate Functions
+    func composerDidCancel(_ controller: TWTRComposerViewController) {
+        print("composerDidCancel, composer cancelled tweet")
+    }
+    
+    func composerDidSucceed(_ controller: TWTRComposerViewController, with tweet: TWTRTweet) {
+        print("composerDidSucceed tweet published")
+    }
+    
+    func composerDidFail(_ controller: TWTRComposerViewController, withError error: Error) {
+        print("composerDidFail, tweet publish failed == \(error.localizedDescription)")
+    }
+    
+    // MARK: Facebook Login Manager function
     func loginManagerDidComplete(_ result: LoginResult) {
         let alertController: UIAlertController
         switch result {
