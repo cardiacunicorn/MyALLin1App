@@ -15,6 +15,7 @@ PODS:
     - FBSDKLoginKit/Login (= 5.15.1)
   - FBSDKLoginKit/Login (5.15.1):
     - FBSDKCoreKit (~> 5.0)
+  - STTwitter (0.2.6)
   - TwitterCore (3.2.0)
   - TwitterKit (3.4.2):
     - TwitterCore (>= 3.2.0)
@@ -22,6 +23,7 @@ PODS:
 DEPENDENCIES:
   - FacebookCore
   - FacebookLogin
+  - STTwitter
   - TwitterKit
 
 SPEC REPOS:
@@ -30,6 +32,7 @@ SPEC REPOS:
     - FacebookLogin
     - FBSDKCoreKit
     - FBSDKLoginKit
+    - STTwitter
     - TwitterCore
     - TwitterKit
 
@@ -38,9 +41,10 @@ SPEC CHECKSUMS:
   FacebookLogin: 6cee9fd6e1fe976fe8f7eec199e27b28b14f5d63
   FBSDKCoreKit: 1d5acf7c9d7a2f92bb1a242dc60cae5b7adb91df
   FBSDKLoginKit: f1ea8026a58b52d30c9f2e6a58ca7d813619fb83
+  STTwitter: 30ee2f79eff78c3d633a1edc869e97db9c9ead59
   TwitterCore: 8cbc9ad34d91c63a0035ea05bfbfc0d7ca72a28c
   TwitterKit: 5e4f41d70b9abdb41df5467f52d7aa2c0fd26ebb
 
-PODFILE CHECKSUM: 3b2e3c4b5fd0eff8dac2cad6f034fb7fb485e25e
+PODFILE CHECKSUM: fc99ea84ab7e5f56d5caf25f47a13bb1027115c4
 
 COCOAPODS: 1.9.1
