@@ -89,15 +89,36 @@ class LoginViewController: UIViewController, TWTRComposerViewControllerDelegate{
         print("Login view loaded.")
         
         // MARK: STTwitter Instantiation
+        // Not sure if this is just going to authorise me, or each user?
         let twitter = STTwitterAPI(oAuthConsumerKey: "0bxAILPpJ4gORixVzWJfahjRV", consumerSecret: "zaDny7HAqqirRrFvrQ6SBq0s9eCuYTBAcBRKrMjqR2UmNXEz5G", oauthToken: "2849820361-VDYgYPW59D62Eyt3DtzMGJJdSEr1WLPGKCyoTS2", oauthTokenSecret: "QieOqVMKm7KR8IXAwpcWn9XI7hFDZ7CgcdZTtptQyb1eR")
+        
+        // Authorisation
         twitter?.verifyCredentials(
-            userSuccessBlock: {
+            userSuccessBlock: { // What to do if credentials are verified
                 (username, userId) -> Void in
-                print(username, userId)
+                print(username ?? "No username", userId ?? "No user ID")
+                
+                twitter?.getHomeTimeline(
+                    sinceID: nil,
+                    count: 2, // How many statuses will be returned
+                    successBlock: { // What to do with retrieved timeline statuses
+                        (statuses) -> Void in
+                        
+                        for status in statuses! {
+                            print(status)
+                        }
+                        
+                    },
+                    errorBlock: {
+                        (error) -> Void in
+                        print(error as Any)
+                    }
+                )
+                
             },
             errorBlock: {
                 (error) -> Void in
-                print(error)
+                print(error as Any)
             }
         )
         
