@@ -9,10 +9,9 @@
 import UIKit
 import FacebookLogin
 import FBSDKCoreKit
-import TwitterKit
 import STTwitter
 
-class LoginViewController: UIViewController, TWTRComposerViewControllerDelegate{
+class LoginViewController: UIViewController {
     
     // MARK: - Buttons
     
@@ -28,41 +27,6 @@ class LoginViewController: UIViewController, TWTRComposerViewControllerDelegate{
 //            ) { result in
 //                self.loginManagerDidComplete(result)
 //            }
-        
-        // MARK: TwitterKit Login
-        // NOTE: Currently failing, due to inability to interpret 'twitterauth://' in Simulator's request
-        
-            if (TWTRTwitter.sharedInstance().sessionStore.hasLoggedInUsers()) {
-                // App must have at least one logged-in user to compose a Tweet
-               
-                guard let shareImg2 = UIImage.init(named: "uk") else {
-                    print("failed init share img")
-                    return
-                }
-                let composer = TWTRComposerViewController.init(initialText: "UK flag picture will be tweeted", image: shareImg2, videoURL: nil)
-                composer.delegate = self
-                present(composer, animated: true, completion: nil)
-            } else {
-                // Log in, and then check again
-                TWTRTwitter.sharedInstance().logIn { session, error in
-                    if session != nil { // Log in succeeded
-                        guard let shareImg2 = UIImage.init(named: "usa") else {
-                            print("failed init share img")
-                            return
-                        }
-                        let composer = TWTRComposerViewController.init(initialText: "USA flag picture will be tweeted", image: shareImg2, videoURL: nil)
-                        composer.delegate = self
-                        self.present(composer, animated: true, completion: nil)
-                    } else {
-                        let alert = UIAlertController(title: "No Twitter Accounts Available", message: "You must log in before presenting a composer.", preferredStyle: .alert)
-                        self.present(alert, animated: false, completion: nil)
-                    }
-                }
-            }
-        
-        // MARK: STTwitter Login
-        
-        
         
     }
     
@@ -92,12 +56,13 @@ class LoginViewController: UIViewController, TWTRComposerViewControllerDelegate{
         // Not sure if this is just going to authorise me, or each user?
         let twitter = STTwitterAPI(oAuthConsumerKey: "0bxAILPpJ4gORixVzWJfahjRV", consumerSecret: "zaDny7HAqqirRrFvrQ6SBq0s9eCuYTBAcBRKrMjqR2UmNXEz5G", oauthToken: "2849820361-VDYgYPW59D62Eyt3DtzMGJJdSEr1WLPGKCyoTS2", oauthTokenSecret: "QieOqVMKm7KR8IXAwpcWn9XI7hFDZ7CgcdZTtptQyb1eR")
         
-        // Authorisation
+        // MARK: STTwitter Login
         twitter?.verifyCredentials(
             userSuccessBlock: { // What to do if credentials are verified
                 (username, userId) -> Void in
                 print(username ?? "No username", userId ?? "No user ID")
                 
+                // MARK: Get Timeline
                 twitter?.getHomeTimeline(
                     sinceID: nil,
                     count: 2, // How many statuses will be returned
@@ -106,6 +71,7 @@ class LoginViewController: UIViewController, TWTRComposerViewControllerDelegate{
                         
                         for status in statuses! {
                             print(status)
+                            // TODO: Process status JSON
                         }
                         
                     },
@@ -129,19 +95,6 @@ class LoginViewController: UIViewController, TWTRComposerViewControllerDelegate{
             print("User is successfully logged in through Facebook.\nAccess token: \(accessToken)")
         }
         
-    }
-    
-    // MARK: Twitter Compose Delegate Functions
-    func composerDidCancel(_ controller: TWTRComposerViewController) {
-        print("composerDidCancel, composer cancelled tweet")
-    }
-    
-    func composerDidSucceed(_ controller: TWTRComposerViewController, with tweet: TWTRTweet) {
-        print("composerDidSucceed tweet published")
-    }
-    
-    func composerDidFail(_ controller: TWTRComposerViewController, withError error: Error) {
-        print("composerDidFail, tweet publish failed == \(error.localizedDescription)")
     }
     
     // MARK: Facebook Login Manager function

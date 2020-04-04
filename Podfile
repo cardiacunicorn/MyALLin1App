@@ -8,7 +8,6 @@ target 'MyALLin1' do
   # Pods for MyALLin1
   pod 'FacebookCore'
   pod 'FacebookLogin'
-  pod 'TwitterKit'
   pod 'STTwitter'
 
   target 'MyALLin1Tests' do
