@@ -24,9 +24,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
-    // Initialises the Facebook SDK
+    // Receives log in credentials from external applications (e.g. Facebook, Twitter)
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-      return ApplicationDelegate.shared.application(app, open: url, options: options)
+        
+        // Facebook wants this here
+        return ApplicationDelegate.shared.application(app, open: url, options: options)
     }
 
     // MARK: UISceneSession Lifecycle
