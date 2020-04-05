@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hCq-Gj-SQw">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hCq-Gj-SQw">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -267,7 +267,7 @@
         <!--Weather-->
         <scene sceneID="p0B-BY-zbr">
             <objects>
-                <viewController id="JaI-JO-rJL" sceneMemberID="viewController">
+                <viewController id="JaI-JO-rJL" customClass="WeatherViewController" customModule="MyALLin1" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4EP-IF-HCS">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -286,11 +286,45 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dt4-IE-MYC">
+                                <rect key="frame" x="16" y="146" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PBL-wl-vFe">
+                                <rect key="frame" x="16" y="209" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0J8-z0-G4p">
+                                <rect key="frame" x="16" y="261" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zcs-sM-8nC">
+                                <rect key="frame" x="16" y="306" width="240" height="128"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Zcs-sM-8nC" firstAttribute="top" secondItem="0J8-z0-G4p" secondAttribute="bottom" constant="24" id="Uz0-o5-Jie"/>
+                            <constraint firstItem="PBL-wl-vFe" firstAttribute="top" secondItem="Dt4-IE-MYC" secondAttribute="bottom" constant="42" id="Xby-eP-ELS"/>
+                            <constraint firstItem="0J8-z0-G4p" firstAttribute="top" secondItem="PBL-wl-vFe" secondAttribute="bottom" constant="31" id="dKo-rn-FRB"/>
+                            <constraint firstItem="Dt4-IE-MYC" firstAttribute="leading" secondItem="TPt-28-P7C" secondAttribute="leading" constant="16" id="rgW-e3-8sW"/>
+                            <constraint firstItem="Dt4-IE-MYC" firstAttribute="top" secondItem="TPt-28-P7C" secondAttribute="top" constant="146" id="ymw-br-Wfq"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="TPt-28-P7C"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Weather" image="cloud.heavyrain" catalog="system" selectedImage="cloud.heavyrain.fill" id="saL-nj-vKF"/>
+                    <connections>
+                        <outlet property="descriptionLabel" destination="0J8-z0-G4p" id="STg-qS-12q"/>
+                        <outlet property="locationNameLabel" destination="Dt4-IE-MYC" id="QAL-RG-LVq"/>
+                        <outlet property="temperatureLabel" destination="PBL-wl-vFe" id="VL6-p5-7GZ"/>
+                        <outlet property="weatherImage" destination="Zcs-sM-8nC" id="oVc-36-vSt"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q2a-Lm-OoX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -371,17 +405,17 @@
         </scene>
     </scenes>
     <resources>
-        <image name="cloud.heavyrain" catalog="system" width="64" height="62"/>
-        <image name="cloud.heavyrain.fill" catalog="system" width="64" height="62"/>
-        <image name="dollarsign.circle" catalog="system" width="64" height="60"/>
-        <image name="dollarsign.circle.fill" catalog="system" width="64" height="60"/>
-        <image name="gear" catalog="system" width="64" height="58"/>
-        <image name="map" catalog="system" width="64" height="56"/>
-        <image name="map.fill" catalog="system" width="64" height="56"/>
-        <image name="person.3" catalog="system" width="72" height="35"/>
-        <image name="person.3.fill" catalog="system" width="71" height="34"/>
-        <image name="photo.fill" catalog="system" width="64" height="46"/>
-        <image name="tv" catalog="system" width="64" height="46"/>
-        <image name="tv.fill" catalog="system" width="64" height="46"/>
+        <image name="cloud.heavyrain" catalog="system" width="128" height="125"/>
+        <image name="cloud.heavyrain.fill" catalog="system" width="128" height="125"/>
+        <image name="dollarsign.circle" catalog="system" width="128" height="121"/>
+        <image name="dollarsign.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="gear" catalog="system" width="128" height="119"/>
+        <image name="map" catalog="system" width="128" height="113"/>
+        <image name="map.fill" catalog="system" width="128" height="113"/>
+        <image name="person.3" catalog="system" width="128" height="62"/>
+        <image name="person.3.fill" catalog="system" width="128" height="61"/>
+        <image name="photo.fill" catalog="system" width="128" height="93"/>
+        <image name="tv" catalog="system" width="128" height="93"/>
+        <image name="tv.fill" catalog="system" width="128" height="93"/>
     </resources>
 </document>
