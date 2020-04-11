@@ -40,4 +40,15 @@ class MyALLin1UITests: XCTestCase {
             }
         }
     }
+    
+    func testMapLocation () {
+        let app = XCUIApplication()
+        app.launch()
+        //Tap the map button
+        XCUIApplication().tabBars.buttons["Map"].tap()
+        //Tap the location of user
+        XCUIApplication().otherElements["My Location"].tap()
+        //Confirm location exists
+        XCTAssertTrue(app.otherElements["My Location"].exists)
+    }
 }
