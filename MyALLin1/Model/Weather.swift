@@ -13,4 +13,5 @@ struct Weather {
     var temp: Int
     var description: String
     var isCurrentLocation: Bool
+    var savedLocation:SavedLocation?
 }

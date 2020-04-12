@@ -9,7 +9,7 @@
 import Foundation
 
 protocol Refresh {
-    func updateCurrentWeather()
+    func updateUI()
 }
 
 class WeatherAPIRequest {
@@ -27,21 +27,18 @@ class WeatherAPIRequest {
     let units = "&units=metric"
     let appID = "&appid=24b6d30815f3ed441901aeac0187c790"
 
-    func getWeather(longitude:String, latitude:String, isCurrentLocation:Bool) {
-        
-        // Ensure any existing weather items are cleared
-        weatherList = []
+    func getWeather(longitude:String, latitude:String, isCurrentLocation:Bool, savedLocation:SavedLocation?){
         
         // Build URL for API call
         let stringURL = baseURL + latitudeParameter + latitude + longitudeParameter + longitude + units + appID
         
         if let url = URL(string: stringURL){
             let request = URLRequest(url: url)
-            getData(request, isCurrentLocation: isCurrentLocation)
+            getData(request, isCurrentLocation: isCurrentLocation, savedLocation: savedLocation)
         }
     }
     
-    func getData(_ request: URLRequest, isCurrentLocation:Bool){
+    func getData(_ request: URLRequest, isCurrentLocation:Bool, savedLocation:SavedLocation?){
         let task = session.dataTask(with: request, completionHandler: { data, response, downloadError in
             if let error = downloadError {
                 print(error)
@@ -65,15 +62,24 @@ class WeatherAPIRequest {
                     let weatherJson = resultJson["weather"] as! [[String:Any]]
                     let description = weatherJson.first!["main"] as! String
                     
-                    // Create weather object
-                    let weatherInfo = Weather(locationName: locationName, temp: Int(temp), description: description, isCurrentLocation: isCurrentLocation)
+                    if isCurrentLocation {
                     
-                    self.weatherList.append(weatherInfo)
+                        // Create weather object
+                        let weatherInfo = Weather(locationName: locationName, temp: Int(temp), description: description, isCurrentLocation: isCurrentLocation, savedLocation: nil)
+                        
+                        self.weatherList.append(weatherInfo)
+                    } else {
+                        // Create weather object
+                        let weatherInfo = Weather(locationName: savedLocation!.name!, temp: Int(temp), description: description, isCurrentLocation: isCurrentLocation, savedLocation: savedLocation)
+                        
+                        self.weatherList.append(weatherInfo)
+                    }
+
                 }
             }
             
             DispatchQueue.main.async {
-                self.delegate?.updateCurrentWeather()
+                self.delegate?.updateUI()
             }
         })
         task.resume()
