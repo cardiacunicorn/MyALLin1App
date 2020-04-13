@@ -10,6 +10,8 @@
 		3EC7300BF5B13A4AD272EE90 /* Pods_MyALLin1_MyALLin1UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C0FF2AC2EF57E110FFBAEB7 /* Pods_MyALLin1_MyALLin1UITests.framework */; };
 		8467C4BFF0283304EC723D3F /* Pods_MyALLin1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DF0BB6BC17AA8F41417B4E8 /* Pods_MyALLin1.framework */; };
 		A923BC5FE60D753307F95E8D /* Pods_MyALLin1Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9A2ECDFFD9B045181BEB8FB /* Pods_MyALLin1Tests.framework */; };
+		B632FAFE2435E09A0072739E /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B632FAFD2435E09A0072739E /* MapViewController.swift */; };
+		B632FB002435EFEB0072739E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B632FAFF2435EFEB0072739E /* CoreLocation.framework */; };
 		FA603B902427056E007B47E7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA603B8F2427056E007B47E7 /* AppDelegate.swift */; };
 		FA603B922427056E007B47E7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA603B912427056E007B47E7 /* SceneDelegate.swift */; };
 		FA603B942427056E007B47E7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA603B932427056E007B47E7 /* LoginViewController.swift */; };
@@ -46,6 +48,8 @@
 		84876D70DAA39E3A3A2F98A5 /* Pods-MyALLin1.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyALLin1.release.xcconfig"; path = "Target Support Files/Pods-MyALLin1/Pods-MyALLin1.release.xcconfig"; sourceTree = "<group>"; };
 		8C0FF2AC2EF57E110FFBAEB7 /* Pods_MyALLin1_MyALLin1UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyALLin1_MyALLin1UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9A2ECDFFD9B045181BEB8FB /* Pods_MyALLin1Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyALLin1Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B632FAFD2435E09A0072739E /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		B632FAFF2435EFEB0072739E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		BEBB07100949738F80F5107A /* Pods-MyALLin1Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyALLin1Tests.release.xcconfig"; path = "Target Support Files/Pods-MyALLin1Tests/Pods-MyALLin1Tests.release.xcconfig"; sourceTree = "<group>"; };
 		C21B14C6190C377A4AE6B23C /* Pods-MyALLin1Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyALLin1Tests.debug.xcconfig"; path = "Target Support Files/Pods-MyALLin1Tests/Pods-MyALLin1Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		FA603B8C2427056E007B47E7 /* MyALLin1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyALLin1.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -70,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B632FB002435EFEB0072739E /* CoreLocation.framework in Frameworks */,
 				8467C4BFF0283304EC723D3F /* Pods_MyALLin1.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -96,6 +101,7 @@
 		50F4D15CB2579B0F5FE369C6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B632FAFF2435EFEB0072739E /* CoreLocation.framework */,
 				6DF0BB6BC17AA8F41417B4E8 /* Pods_MyALLin1.framework */,
 				8C0FF2AC2EF57E110FFBAEB7 /* Pods_MyALLin1_MyALLin1UITests.framework */,
 				A9A2ECDFFD9B045181BEB8FB /* Pods_MyALLin1Tests.framework */,
@@ -199,6 +205,7 @@
 			isa = PBXGroup;
 			children = (
 				FA603B932427056E007B47E7 /* LoginViewController.swift */,
+				B632FAFD2435E09A0072739E /* MapViewController.swift */,
 			);
 			path = "View Controller";
 			sourceTree = "<group>";
@@ -445,6 +452,7 @@
 				FA603B9A2427056E007B47E7 /* MyALLin1.xcdatamodeld in Sources */,
 				FA603B942427056E007B47E7 /* LoginViewController.swift in Sources */,
 				FA603B902427056E007B47E7 /* AppDelegate.swift in Sources */,
+				B632FAFE2435E09A0072739E /* MapViewController.swift in Sources */,
 				FA603B922427056E007B47E7 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

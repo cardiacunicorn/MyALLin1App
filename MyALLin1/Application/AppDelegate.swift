@@ -8,7 +8,6 @@
 
 import UIKit
 import CoreData
-import FacebookCore
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,15 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        // Initialises the Facebook SDK
-        ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
-        
         return true
-    }
-    
-    // Initialises the Facebook SDK
-    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-      return ApplicationDelegate.shared.application(app, open: url, options: options)
     }
 
     // MARK: UISceneSession Lifecycle

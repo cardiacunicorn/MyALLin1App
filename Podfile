@@ -6,8 +6,7 @@ target 'MyALLin1' do
   use_frameworks!
 
   # Pods for MyALLin1
-  pod 'FacebookCore'
-  pod 'FacebookLogin'
+  pod 'STTwitter'
 
   target 'MyALLin1Tests' do
     inherit! :search_paths
