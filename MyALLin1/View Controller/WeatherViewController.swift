@@ -15,7 +15,6 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate, UITabl
    @IBOutlet weak var weatherTableView: UITableView!
     
     var locationManager:CLLocationManager?
-    //var geocoder = CLGeocoder()
     var latestLongitude:String?
     var latestLatitude:String?
     
@@ -38,6 +37,8 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate, UITabl
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "weatherCell", for: indexPath)
         
+        cell.backgroundColor = UIColor(red:0.16, green:0.20, blue:0.28, alpha:1.00)
+        
         let locationNameLabel = cell.viewWithTag(1001) as! UILabel
         let temperatureLabel = cell.viewWithTag(1002) as! UILabel
         let descriptionLabel = cell.viewWithTag(1003) as! UILabel
@@ -48,6 +49,8 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate, UITabl
         temperatureLabel.text = String(weatherList[indexPath.row].temp) + "°C"
         descriptionLabel.text = weatherList[indexPath.row].description
         weatherIcon.image = UIImage(named: weatherList[indexPath.row].description)
+        locationIcon.image = locationIcon.image?.withRenderingMode(.alwaysTemplate)
+        locationIcon.tintColor = UIColor.white
         
         if weatherList[indexPath.row].isCurrentLocation {
             locationIcon.isHidden = false
@@ -79,7 +82,9 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate, UITabl
         super.viewDidLoad()
         weatherModel.delegate = self
         weatherTableView.dataSource = self
+        weatherList = []
         loadContent()
+        
     }
     
     func loadContent(){
@@ -101,10 +106,14 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate, UITabl
             latestLongitude = String(location.coordinate.longitude)
             latestLatitude = String(location.coordinate.latitude)
             locationManager?.stopUpdatingLocation()
+            locationManager?.delegate = nil
             if let currentLongitude = latestLongitude, let currentLatitude = latestLatitude {
                 // Get weather information for current location coordinates
                 weatherModel.getWeather(longitude: currentLongitude, latitude: currentLatitude, isCurrentLocation: true, savedLocation: nil)
-            } else { locationManager?.startUpdatingLocation() }
+            } else {
+                locationManager?.startUpdatingLocation()
+                locationManager?.delegate = self
+            }
         }
     }
     
