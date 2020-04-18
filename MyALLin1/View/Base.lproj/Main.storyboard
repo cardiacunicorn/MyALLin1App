@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hCq-Gj-SQw">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hCq-Gj-SQw">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -21,22 +21,22 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version: 0.1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oQx-KE-6th">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version: 0.3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oQx-KE-6th">
                                 <rect key="frame" x="16" y="69" width="288" height="20"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pods: FacebookCore, FBSDKCoreKit, FacebookLogin, FBSDKLoginKit" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uZl-wb-LFW">
-                                <rect key="frame" x="16" y="112" width="288" height="38.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pods: STTwitter, Swifter" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uZl-wb-LFW">
+                                <rect key="frame" x="16" y="112" width="288" height="19.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CQz-MA-h3A">
-                                <rect key="frame" x="16" y="180" width="288" height="33"/>
+                                <rect key="frame" x="16" y="161" width="288" height="33"/>
                                 <attributedString key="attributedText">
-                                    <fragment content="Notes: Preliminary layout created. Facebook pods and login implemented.">
+                                    <fragment content="Notes: Cafe map and weather working well. Twitter in progress. Still to come: eBay, News">
                                         <attributes>
                                             <font key="NSFont" size="14" name="HelveticaNeue"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
@@ -99,7 +99,7 @@
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="6Zy-mm-h4R"/>
                                                     <constraint firstAttribute="height" constant="50" id="y1B-15-Zh4"/>
                                                 </constraints>
-                                                <state key="normal" title="Login with Facebook">
+                                                <state key="normal" title="Login with Twitter">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <userDefinedRuntimeAttributes>
@@ -112,13 +112,12 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NnE-sX-hAr">
-                                                <rect key="frame" x="110" y="521" width="100" height="50"/>
+                                                <rect key="frame" x="60" y="521" width="200" height="50"/>
                                                 <color key="backgroundColor" red="1" green="0.43988720780000001" blue="0.36660355319999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="Rsh-6Y-lgx"/>
                                                     <constraint firstAttribute="height" constant="50" id="zfQ-1R-yjr"/>
                                                 </constraints>
-                                                <state key="normal" title="Log out">
+                                                <state key="normal" title="Get Timeline">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <userDefinedRuntimeAttributes>
@@ -171,9 +170,11 @@
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="600" id="383-af-PJ2"/>
+                                            <constraint firstItem="NnE-sX-hAr" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="OB0-pn-c0V" secondAttribute="trailing" id="8zD-aR-TXU"/>
                                             <constraint firstItem="OB0-pn-c0V" firstAttribute="centerX" secondItem="IM5-Gr-KVy" secondAttribute="centerX" id="9vM-I0-3bT"/>
                                             <constraint firstItem="efW-Q1-1cz" firstAttribute="top" secondItem="IM5-Gr-KVy" secondAttribute="top" id="A8u-Vu-fi4"/>
                                             <constraint firstItem="jD7-1g-cGC" firstAttribute="top" secondItem="NKH-L5-v48" secondAttribute="bottom" id="B7B-pm-dEg"/>
+                                            <constraint firstItem="NnE-sX-hAr" firstAttribute="leading" secondItem="OB0-pn-c0V" secondAttribute="leading" id="Fyw-Sy-tqd"/>
                                             <constraint firstItem="NKH-L5-v48" firstAttribute="trailing" secondItem="IM5-Gr-KVy" secondAttribute="trailing" id="GlU-KJ-ZQi"/>
                                             <constraint firstItem="a2Y-K8-3iS" firstAttribute="top" secondItem="TQc-Og-gTk" secondAttribute="bottom" constant="8" id="IWd-Ci-JFg"/>
                                             <constraint firstAttribute="trailing" secondItem="TQc-Og-gTk" secondAttribute="trailing" id="SZF-vJ-IvO"/>
@@ -182,7 +183,6 @@
                                             <constraint firstItem="NnE-sX-hAr" firstAttribute="top" secondItem="OB0-pn-c0V" secondAttribute="bottom" constant="10" id="dOF-GZ-mWg"/>
                                             <constraint firstItem="efW-Q1-1cz" firstAttribute="leading" secondItem="IM5-Gr-KVy" secondAttribute="leading" id="erw-7w-ony"/>
                                             <constraint firstItem="OB0-pn-c0V" firstAttribute="top" secondItem="a2Y-K8-3iS" secondAttribute="bottom" constant="10" id="gcl-Qu-VJI"/>
-                                            <constraint firstItem="NnE-sX-hAr" firstAttribute="centerX" secondItem="IM5-Gr-KVy" secondAttribute="centerX" id="ogw-kF-Z8B"/>
                                             <constraint firstItem="NKH-L5-v48" firstAttribute="top" secondItem="efW-Q1-1cz" secondAttribute="bottom" id="pbg-rs-PuW"/>
                                             <constraint firstItem="efW-Q1-1cz" firstAttribute="trailing" secondItem="IM5-Gr-KVy" secondAttribute="trailing" id="qXv-UJ-JDy"/>
                                             <constraint firstItem="TQc-Og-gTk" firstAttribute="leading" secondItem="IM5-Gr-KVy" secondAttribute="leading" id="sJC-BB-Xt3"/>
@@ -601,17 +601,17 @@
     </scenes>
     <resources>
         <image name="15960367851553229588-16" width="16" height="16"/>
-        <image name="cloud.heavyrain" catalog="system" width="128" height="125"/>
-        <image name="cloud.heavyrain.fill" catalog="system" width="128" height="125"/>
-        <image name="dollarsign.circle" catalog="system" width="128" height="121"/>
-        <image name="dollarsign.circle.fill" catalog="system" width="128" height="121"/>
-        <image name="gear" catalog="system" width="128" height="119"/>
-        <image name="map" catalog="system" width="128" height="113"/>
-        <image name="map.fill" catalog="system" width="128" height="113"/>
-        <image name="person.3" catalog="system" width="128" height="62"/>
-        <image name="person.3.fill" catalog="system" width="128" height="61"/>
-        <image name="photo.fill" catalog="system" width="128" height="93"/>
-        <image name="tv" catalog="system" width="128" height="93"/>
-        <image name="tv.fill" catalog="system" width="128" height="93"/>
+        <image name="cloud.heavyrain" catalog="system" width="64" height="62"/>
+        <image name="cloud.heavyrain.fill" catalog="system" width="64" height="62"/>
+        <image name="dollarsign.circle" catalog="system" width="64" height="60"/>
+        <image name="dollarsign.circle.fill" catalog="system" width="64" height="60"/>
+        <image name="gear" catalog="system" width="64" height="58"/>
+        <image name="map" catalog="system" width="64" height="56"/>
+        <image name="map.fill" catalog="system" width="64" height="56"/>
+        <image name="person.3" catalog="system" width="72" height="35"/>
+        <image name="person.3.fill" catalog="system" width="71" height="34"/>
+        <image name="photo.fill" catalog="system" width="64" height="46"/>
+        <image name="tv" catalog="system" width="64" height="46"/>
+        <image name="tv.fill" catalog="system" width="64" height="46"/>
     </resources>
 </document>
