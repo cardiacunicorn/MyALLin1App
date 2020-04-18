@@ -19,8 +19,13 @@
 		407E1DF2244108D300F9CA91 /* SavedLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407E1DF1244108D300F9CA91 /* SavedLocationManager.swift */; };
 		8467C4BFF0283304EC723D3F /* Pods_MyALLin1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DF0BB6BC17AA8F41417B4E8 /* Pods_MyALLin1.framework */; };
 		A923BC5FE60D753307F95E8D /* Pods_MyALLin1Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9A2ECDFFD9B045181BEB8FB /* Pods_MyALLin1Tests.framework */; };
+		B6158A3A24494CEF00C74E92 /* DealsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6158A3924494CEF00C74E92 /* DealsViewController.swift */; };
+		B6158A3C24494DA500C74E92 /* DealsAPIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6158A3B24494DA500C74E92 /* DealsAPIRequest.swift */; };
 		B632FAFE2435E09A0072739E /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B632FAFD2435E09A0072739E /* MapViewController.swift */; };
 		B632FB002435EFEB0072739E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B632FAFF2435EFEB0072739E /* CoreLocation.framework */; };
+		B6843F9D244984C400070F52 /* DealCategory+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6843F9B244984C400070F52 /* DealCategory+CoreDataClass.swift */; };
+		B6843F9E244984C400070F52 /* DealCategory+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6843F9C244984C400070F52 /* DealCategory+CoreDataProperties.swift */; };
+		B6843FA0244987A600070F52 /* DealCategoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6843F9F244987A600070F52 /* DealCategoryManager.swift */; };
 		FA603B902427056E007B47E7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA603B8F2427056E007B47E7 /* AppDelegate.swift */; };
 		FA603B922427056E007B47E7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA603B912427056E007B47E7 /* SceneDelegate.swift */; };
 		FA603B942427056E007B47E7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA603B932427056E007B47E7 /* LoginViewController.swift */; };
@@ -66,8 +71,13 @@
 		84876D70DAA39E3A3A2F98A5 /* Pods-MyALLin1.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyALLin1.release.xcconfig"; path = "Target Support Files/Pods-MyALLin1/Pods-MyALLin1.release.xcconfig"; sourceTree = "<group>"; };
 		8C0FF2AC2EF57E110FFBAEB7 /* Pods_MyALLin1_MyALLin1UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyALLin1_MyALLin1UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9A2ECDFFD9B045181BEB8FB /* Pods_MyALLin1Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyALLin1Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B6158A3924494CEF00C74E92 /* DealsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealsViewController.swift; sourceTree = "<group>"; };
+		B6158A3B24494DA500C74E92 /* DealsAPIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealsAPIRequest.swift; sourceTree = "<group>"; };
 		B632FAFD2435E09A0072739E /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		B632FAFF2435EFEB0072739E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		B6843F9B244984C400070F52 /* DealCategory+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DealCategory+CoreDataClass.swift"; sourceTree = "<group>"; };
+		B6843F9C244984C400070F52 /* DealCategory+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DealCategory+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B6843F9F244987A600070F52 /* DealCategoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealCategoryManager.swift; sourceTree = "<group>"; };
 		BEBB07100949738F80F5107A /* Pods-MyALLin1Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyALLin1Tests.release.xcconfig"; path = "Target Support Files/Pods-MyALLin1Tests/Pods-MyALLin1Tests.release.xcconfig"; sourceTree = "<group>"; };
 		C21B14C6190C377A4AE6B23C /* Pods-MyALLin1Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyALLin1Tests.debug.xcconfig"; path = "Target Support Files/Pods-MyALLin1Tests/Pods-MyALLin1Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		FA603B8C2427056E007B47E7 /* MyALLin1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyALLin1.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -196,6 +206,8 @@
 		FA603BC2242706A7007B47E7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B6843F9B244984C400070F52 /* DealCategory+CoreDataClass.swift */,
+				B6843F9C244984C400070F52 /* DealCategory+CoreDataProperties.swift */,
 				407E1DED2441086A00F9CA91 /* SavedLocation+CoreDataClass.swift */,
 				407E1DEE2441086A00F9CA91 /* SavedLocation+CoreDataProperties.swift */,
 				FA603B982427056E007B47E7 /* MyALLin1.xcdatamodeld */,
@@ -204,6 +216,8 @@
 				407E1DE3243F7FC000F9CA91 /* CityAPIRequest.swift */,
 				407E1DE7243FB0E800F9CA91 /* City.swift */,
 				407E1DF1244108D300F9CA91 /* SavedLocationManager.swift */,
+				B6158A3B24494DA500C74E92 /* DealsAPIRequest.swift */,
+				B6843F9F244987A600070F52 /* DealCategoryManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -233,6 +247,7 @@
 				B632FAFD2435E09A0072739E /* MapViewController.swift */,
 				402E9E502439148B00BB296F /* WeatherViewController.swift */,
 				407E1DE5243F899400F9CA91 /* CitySearchViewController.swift */,
+				B6158A3924494CEF00C74E92 /* DealsViewController.swift */,
 			);
 			path = "View Controller";
 			sourceTree = "<group>";
@@ -478,16 +493,21 @@
 			files = (
 				402E9E55243914FD00BB296F /* Weather.swift in Sources */,
 				FA603B9A2427056E007B47E7 /* MyALLin1.xcdatamodeld in Sources */,
+				B6158A3A24494CEF00C74E92 /* DealsViewController.swift in Sources */,
 				407E1DF02441086A00F9CA91 /* SavedLocation+CoreDataProperties.swift in Sources */,
 				402E9E512439148B00BB296F /* WeatherViewController.swift in Sources */,
 				407E1DE4243F7FC000F9CA91 /* CityAPIRequest.swift in Sources */,
 				402E9E53243914D300BB296F /* WeatherAPIRequest.swift in Sources */,
+				B6843F9D244984C400070F52 /* DealCategory+CoreDataClass.swift in Sources */,
 				407E1DF2244108D300F9CA91 /* SavedLocationManager.swift in Sources */,
 				FA603B942427056E007B47E7 /* LoginViewController.swift in Sources */,
 				FA603B902427056E007B47E7 /* AppDelegate.swift in Sources */,
+				B6843FA0244987A600070F52 /* DealCategoryManager.swift in Sources */,
 				407E1DE8243FB0E800F9CA91 /* City.swift in Sources */,
 				407E1DEF2441086A00F9CA91 /* SavedLocation+CoreDataClass.swift in Sources */,
+				B6158A3C24494DA500C74E92 /* DealsAPIRequest.swift in Sources */,
 				407E1DE6243F899400F9CA91 /* CitySearchViewController.swift in Sources */,
+				B6843F9E244984C400070F52 /* DealCategory+CoreDataProperties.swift in Sources */,
 				B632FAFE2435E09A0072739E /* MapViewController.swift in Sources */,
 				FA603B922427056E007B47E7 /* SceneDelegate.swift in Sources */,
 			);
