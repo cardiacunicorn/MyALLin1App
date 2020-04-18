@@ -7,6 +7,7 @@ target 'MyALLin1' do
 
   # Pods for MyALLin1
   pod 'STTwitter'
+  pod 'Swifter', :git => 'https://github.com/mattdonnelly/Swifter.git'
 
   target 'MyALLin1Tests' do
     inherit! :search_paths
