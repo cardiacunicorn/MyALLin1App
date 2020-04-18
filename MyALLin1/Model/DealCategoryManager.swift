@@ -19,7 +19,7 @@ class DealCategoryManager {
     let managedContext: NSManagedObjectContext
 
     // Arrays to deal category
-    var dealCategoryResults = [Vendor]()
+    var dealCategoryResults = [DealCategory]()
     
     func fetchDealCategorys()
     {
