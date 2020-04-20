@@ -21,6 +21,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        // MARK: When traffic arrives with the app's URL scheme, handle the any info it arrives with
+        guard let components = NSURLComponents(url: url, resolvingAgainstBaseURL: true),
+            let page = components.path, // Where the user should be re-directed to within the app
+            let params = components.queryItems else {
+                print("No query items in redirect")
+                return false
+            }
+        
+        print(page)
+        print(params)
+        
+        if (page == "Feed") {
+            print("Redirecting to the feed tab")
+        }
+        
         if let callback = URL(string: "MyALLin1://") {
             Swifter.handleOpenURL(url, callbackURL: callback)
         }
