@@ -12,18 +12,135 @@ import Swifter
 
 class LoginViewController: UIViewController {
     
+    let twitterapi = STTwitterAPI(appOnlyWithConsumerKey: "0bxAILPpJ4gORixVzWJfahjRV", consumerSecret: "zaDny7HAqqirRrFvrQ6SBq0s9eCuYTBAcBRKrMjqR2UmNXEz5G")
+    
+    var api = STTwitterAPI.init()
+    
     let swifter = Swifter(consumerKey: "0bxAILPpJ4gORixVzWJfahjRV", consumerSecret: "zaDny7HAqqirRrFvrQ6SBq0s9eCuYTBAcBRKrMjqR2UmNXEz5G")
     
-    let twitter = STTwitterAPI(oAuthConsumerKey: "0bxAILPpJ4gORixVzWJfahjRV", consumerSecret: "zaDny7HAqqirRrFvrQ6SBq0s9eCuYTBAcBRKrMjqR2UmNXEz5G")
-    
     let alexstwitter = STTwitterAPI(oAuthConsumerKey: "0bxAILPpJ4gORixVzWJfahjRV", consumerSecret: "zaDny7HAqqirRrFvrQ6SBq0s9eCuYTBAcBRKrMjqR2UmNXEz5G", oauthToken: "2849820361-VDYgYPW59D62Eyt3DtzMGJJdSEr1WLPGKCyoTS2", oauthTokenSecret: "QieOqVMKm7KR8IXAwpcWn9XI7hFDZ7CgcdZTtptQyb1eR")
+    
+    var username = ""
+    var password = ""
     
     // MARK: - Buttons
     
     // MARK: Login Button
     @IBAction func loginButton(_ sender: Any) {
         
-        // MARK: Swifter Login
+        getLoginDetails()
+        verifySTTwitter()
+        // verifySwifter()
+        
+    }
+    
+    // MARK: Logout button
+    @IBAction func logoutButton(_ sender: Any) {
+//        swifter.getHomeTimeline(count: 5, success: { (json) in
+//            print(json)
+//        }) { (error) in
+//            print(error)
+//        }
+    }
+    
+    // MARK: - Functions
+    // MARK: ViewController Functions
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        print("Login view loaded.")
+        
+    }
+    
+    func getLoginDetails() {
+        username = "cardiacunicorn"
+        password = "darkstar1337"
+    }
+    
+    func verifySTTwitter() {
+        
+        // MARK: Verify with entered username & password
+//        let twitter = STTwitterOAuth(consumerName: "MyALLin1App", consumerKey: "0bxAILPpJ4gORixVzWJfahjRV", consumerSecret: "zaDny7HAqqirRrFvrQ6SBq0s9eCuYTBAcBRKrMjqR2UmNXEz5G", username: username, password: password)
+//
+//        twitter?.verifyCredentialsRemotely(
+//            successBlock: { (token, value) in
+//                print(token)
+//                print(value)
+//        },
+//            errorBlock: { (e) in
+//                print(e)
+//        })
+        
+        api = STTwitterAPI(oAuthConsumerKey: "0bxAILPpJ4gORixVzWJfahjRV", consumerSecret: "zaDny7HAqqirRrFvrQ6SBq0s9eCuYTBAcBRKrMjqR2UmNXEz5G")
+        api.postTokenRequest(
+            { (url, oauthToken) in
+                print(url)
+                print(oauthToken)
+                if let url = url {
+                    print(url)
+                    UIApplication.shared.open(url)
+                }
+            },
+            authenticateInsteadOfAuthorize: false,
+            forceLogin: true,
+            screenName: nil,
+            oauthCallback: "MyALLin1://twitter_access_tokens/",
+            errorBlock: { (error) in
+                print(error)
+            }
+        )
+        
+        print(api)
+        
+        // MARK: Verify with known OAuth Token & Secret
+        api.verifyCredentials(
+            userSuccessBlock: { // What to do if credentials are verified
+                (username, userId) -> Void in
+                print(username ?? "No username", userId ?? "No user ID")
+                self.getTimeline()
+
+            },
+            errorBlock: {
+                (error) -> Void in
+                print(error as Any)
+            }
+        )
+        
+        // MARK: Verify with known OAuth Token & Secret
+//        alexstwitter?.verifyCredentials(
+//            userSuccessBlock: { // What to do if credentials are verified
+//                (username, userId) -> Void in
+//                print(username ?? "No username", userId ?? "No user ID")
+//                self.getTimeline()
+//
+//            },
+//            errorBlock: {
+//                (error) -> Void in
+//                print(error as Any)
+//            }
+//        )
+    }
+    
+    func getTimeline() {
+        self.twitterapi?.getHomeTimeline(
+            sinceID: nil,
+            count: 1, // How many statuses will be returned
+            successBlock: { // What to do with retrieved timeline statuses
+                (statuses) -> Void in
+
+                for status in statuses! {
+                    print(status)
+                    // TODO: Process status JSON
+                }
+
+            },
+            errorBlock: {
+                (error) -> Void in
+                print(error as Any)
+            }
+        )
+    }
+    
+    func verifySwifter() {
         if let landingURL = URL(string: "MyALLin1://") {
             swifter.authorize(
                 withCallback: landingURL,
@@ -41,53 +158,5 @@ class LoginViewController: UIViewController {
         }
     }
     
-    // MARK: Logout button
-    @IBAction func logoutButton(_ sender: Any) {
-        swifter.getHomeTimeline(count: 5, success: { (json) in
-            print(json)
-        }) { (error) in
-            print(error)
-        }
-    }
-    
-    // MARK: - Functions
-    // MARK: ViewController Functions
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        print("Login view loaded.")
-
-        // MARK: STTwitter Login
-//        alexstwitter?.verifyCredentials(
-//            userSuccessBlock: { // What to do if credentials are verified
-//                (username, userId) -> Void in
-//                print(username ?? "No username", userId ?? "No user ID")
-//
-//                // MARK: Get Timeline
-//                alexstwitter?.getHomeTimeline(
-//                    sinceID: nil,
-//                    count: 1, // How many statuses will be returned
-//                    successBlock: { // What to do with retrieved timeline statuses
-//                        (statuses) -> Void in
-//
-//                        for status in statuses! {
-//                            print(status)
-//                            // TODO: Process status JSON
-//                        }
-//
-//                    },
-//                    errorBlock: {
-//                        (error) -> Void in
-//                        print(error as Any)
-//                    }
-//                )
-//
-//            },
-//            errorBlock: {
-//                (error) -> Void in
-//                print(error as Any)
-//            }
-//        )
-        
-    }
 }
 
