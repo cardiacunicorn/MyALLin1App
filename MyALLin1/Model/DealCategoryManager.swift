@@ -35,16 +35,40 @@ class DealCategoryManager {
         }
     }
     
-
-    func saveDealCategory(_ name: String)
-    {
-        // get the deal category entity from core data
-        let dealCategory = NSEntityDescription.insertNewObject(forEntityName: "DealCategory", into: managedContext) as! DealCategory
+    // get single vendor using index
+    func getCategory(index: Int) -> DealCategory {
+        return getCategoryList()[index]
+    }
+    
+    // get list of vendors
+    func getCategoryList() -> [DealCategory]{
+        return dealCategoryResults
+    }
+    
+    // get total count of vendors in list
+    func getCategoryCount() -> Int {
+        return getCategoryList().count
+    }
+    
+    // get specific vendor details
+    func getCategoryDetails(index: Int) -> (String){
         
-        // set the deal category attributes to be the variables provided to the function
-        dealCategory.name = name
+        let category = getCategory(index: index)
+        let name = category.name!
+    
+        return (name)
+    }
+    
+    func addDealCategory (_ name: String) {
+        let newDealCategory = NSEntityDescription.insertNewObject(forEntityName: "DealCategory", into: managedContext) as! DealCategory
         
-        // save changes
+        newDealCategory.name = name
+        
+        appDelegate.saveContext()
+    }
+    
+    func deleteDealCategory(dealCategory: DealCategory){
+        managedContext.delete(dealCategory)
         appDelegate.saveContext()
     }
     
@@ -60,7 +84,7 @@ class DealCategoryManager {
         return Static.instance!
     }
     
-    private init(){
+    init(){
         managedContext = appDelegate.persistentContainer.viewContext
         fetchDealCategorys()
     }

@@ -23,6 +23,7 @@
 		B6158A3C24494DA500C74E92 /* DealsAPIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6158A3B24494DA500C74E92 /* DealsAPIRequest.swift */; };
 		B632FAFE2435E09A0072739E /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B632FAFD2435E09A0072739E /* MapViewController.swift */; };
 		B632FB002435EFEB0072739E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B632FAFF2435EFEB0072739E /* CoreLocation.framework */; };
+		B63B4054244AA0000035467A /* DealsCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63B4053244AA0000035467A /* DealsCategoryViewController.swift */; };
 		B6843F9D244984C400070F52 /* DealCategory+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6843F9B244984C400070F52 /* DealCategory+CoreDataClass.swift */; };
 		B6843F9E244984C400070F52 /* DealCategory+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6843F9C244984C400070F52 /* DealCategory+CoreDataProperties.swift */; };
 		B6843FA0244987A600070F52 /* DealCategoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6843F9F244987A600070F52 /* DealCategoryManager.swift */; };
@@ -75,6 +76,7 @@
 		B6158A3B24494DA500C74E92 /* DealsAPIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealsAPIRequest.swift; sourceTree = "<group>"; };
 		B632FAFD2435E09A0072739E /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		B632FAFF2435EFEB0072739E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		B63B4053244AA0000035467A /* DealsCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealsCategoryViewController.swift; sourceTree = "<group>"; };
 		B6843F9B244984C400070F52 /* DealCategory+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DealCategory+CoreDataClass.swift"; sourceTree = "<group>"; };
 		B6843F9C244984C400070F52 /* DealCategory+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DealCategory+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		B6843F9F244987A600070F52 /* DealCategoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealCategoryManager.swift; sourceTree = "<group>"; };
@@ -248,6 +250,7 @@
 				402E9E502439148B00BB296F /* WeatherViewController.swift */,
 				407E1DE5243F899400F9CA91 /* CitySearchViewController.swift */,
 				B6158A3924494CEF00C74E92 /* DealsViewController.swift */,
+				B63B4053244AA0000035467A /* DealsCategoryViewController.swift */,
 			);
 			path = "View Controller";
 			sourceTree = "<group>";
@@ -505,6 +508,7 @@
 				B6843FA0244987A600070F52 /* DealCategoryManager.swift in Sources */,
 				407E1DE8243FB0E800F9CA91 /* City.swift in Sources */,
 				407E1DEF2441086A00F9CA91 /* SavedLocation+CoreDataClass.swift in Sources */,
+				B63B4054244AA0000035467A /* DealsCategoryViewController.swift in Sources */,
 				B6158A3C24494DA500C74E92 /* DealsAPIRequest.swift in Sources */,
 				407E1DE6243F899400F9CA91 /* CitySearchViewController.swift in Sources */,
 				B6843F9E244984C400070F52 /* DealCategory+CoreDataProperties.swift in Sources */,

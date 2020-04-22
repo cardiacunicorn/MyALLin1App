@@ -6,4 +6,8 @@
 //  Copyright © 2020 MyALLin1. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+class DealsViewController: UIViewController {
+
+}
