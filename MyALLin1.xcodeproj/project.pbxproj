@@ -20,7 +20,7 @@
 		8467C4BFF0283304EC723D3F /* Pods_MyALLin1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DF0BB6BC17AA8F41417B4E8 /* Pods_MyALLin1.framework */; };
 		A923BC5FE60D753307F95E8D /* Pods_MyALLin1Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9A2ECDFFD9B045181BEB8FB /* Pods_MyALLin1Tests.framework */; };
 		B6158A3A24494CEF00C74E92 /* DealsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6158A3924494CEF00C74E92 /* DealsViewController.swift */; };
-		B6158A3C24494DA500C74E92 /* DealsAPIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6158A3B24494DA500C74E92 /* DealsAPIRequest.swift */; };
+		B6158A3C24494DA500C74E92 /* DealAPIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6158A3B24494DA500C74E92 /* DealAPIRequest.swift */; };
 		B632FAFE2435E09A0072739E /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B632FAFD2435E09A0072739E /* MapViewController.swift */; };
 		B632FB002435EFEB0072739E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B632FAFF2435EFEB0072739E /* CoreLocation.framework */; };
 		B63B4054244AA0000035467A /* DealsCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63B4053244AA0000035467A /* DealsCategoryViewController.swift */; };
@@ -73,7 +73,7 @@
 		8C0FF2AC2EF57E110FFBAEB7 /* Pods_MyALLin1_MyALLin1UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyALLin1_MyALLin1UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9A2ECDFFD9B045181BEB8FB /* Pods_MyALLin1Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyALLin1Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6158A3924494CEF00C74E92 /* DealsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealsViewController.swift; sourceTree = "<group>"; };
-		B6158A3B24494DA500C74E92 /* DealsAPIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealsAPIRequest.swift; sourceTree = "<group>"; };
+		B6158A3B24494DA500C74E92 /* DealAPIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealAPIRequest.swift; sourceTree = "<group>"; };
 		B632FAFD2435E09A0072739E /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		B632FAFF2435EFEB0072739E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		B63B4053244AA0000035467A /* DealsCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealsCategoryViewController.swift; sourceTree = "<group>"; };
@@ -218,7 +218,7 @@
 				407E1DE3243F7FC000F9CA91 /* CityAPIRequest.swift */,
 				407E1DE7243FB0E800F9CA91 /* City.swift */,
 				407E1DF1244108D300F9CA91 /* SavedLocationManager.swift */,
-				B6158A3B24494DA500C74E92 /* DealsAPIRequest.swift */,
+				B6158A3B24494DA500C74E92 /* DealAPIRequest.swift */,
 				B6843F9F244987A600070F52 /* DealCategoryManager.swift */,
 			);
 			path = Model;
@@ -509,7 +509,7 @@
 				407E1DE8243FB0E800F9CA91 /* City.swift in Sources */,
 				407E1DEF2441086A00F9CA91 /* SavedLocation+CoreDataClass.swift in Sources */,
 				B63B4054244AA0000035467A /* DealsCategoryViewController.swift in Sources */,
-				B6158A3C24494DA500C74E92 /* DealsAPIRequest.swift in Sources */,
+				B6158A3C24494DA500C74E92 /* DealAPIRequest.swift in Sources */,
 				407E1DE6243F899400F9CA91 /* CitySearchViewController.swift in Sources */,
 				B6843F9E244984C400070F52 /* DealCategory+CoreDataProperties.swift in Sources */,
 				B632FAFE2435E09A0072739E /* MapViewController.swift in Sources */,

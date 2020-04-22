@@ -9,5 +9,16 @@
 import UIKit
 
 class DealsViewController: UIViewController {
-
+    
+    var model = DealAPIRequest()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        updateUI()
+    }
+    
+    func updateUI() {
+        print("Testing eBay API")
+        model.getBearerToken()
+    }
 }

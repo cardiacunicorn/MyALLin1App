@@ -53,6 +53,7 @@ extension DealsCategoryViewController: UITableViewDataSource {
         
         //Variables for each element in the current cell
         let name = cell.viewWithTag(1001) as! UILabel
+        
         //Get current deal name
         let categoryDetails = model.getCategoryDetails(index: indexPath.row)
         
