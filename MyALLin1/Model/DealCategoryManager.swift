@@ -18,9 +18,10 @@ class DealCategoryManager {
     // Reference to the managed context
     let managedContext: NSManagedObjectContext
 
-    // Arrays to deal category
+    // Array for deal category
     var dealCategoryResults = [DealCategory]()
     
+    // Get all deal categorys and store in array
     func fetchDealCategorys()
     {
         // Get all deal category records
@@ -35,22 +36,22 @@ class DealCategoryManager {
         }
     }
     
-    // get single vendor using index
+    // Get a single deal category using index
     func getCategory(index: Int) -> DealCategory {
         return getCategoryList()[index]
     }
     
-    // get list of vendors
+    // Get a list of deal categorys
     func getCategoryList() -> [DealCategory]{
         return dealCategoryResults
     }
     
-    // get total count of vendors in list
+    // Get a total count of deal categorys
     func getCategoryCount() -> Int {
         return getCategoryList().count
     }
     
-    // get specific vendor details
+    // Get a deal category name
     func getCategoryDetails(index: Int) -> (String){
         
         let category = getCategory(index: index)
@@ -59,6 +60,7 @@ class DealCategoryManager {
         return (name)
     }
     
+    // Add a new deal category
     func addDealCategory (_ name: String) {
         let newDealCategory = NSEntityDescription.insertNewObject(forEntityName: "DealCategory", into: managedContext) as! DealCategory
         
@@ -67,6 +69,7 @@ class DealCategoryManager {
         appDelegate.saveContext()
     }
     
+    // Delete an existing deal category
     func deleteDealCategory(dealCategory: DealCategory){
         managedContext.delete(dealCategory)
         appDelegate.saveContext()

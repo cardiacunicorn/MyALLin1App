@@ -18,7 +18,6 @@ class DealsViewController: UIViewController {
     }
     
     func updateUI() {
-        print("Testing eBay API")
-        model.getBearerToken()
+        model.getCategoryItems(searchTerm: "iphone")
     }
 }

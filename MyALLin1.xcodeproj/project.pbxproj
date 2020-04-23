@@ -27,6 +27,7 @@
 		B6843F9D244984C400070F52 /* DealCategory+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6843F9B244984C400070F52 /* DealCategory+CoreDataClass.swift */; };
 		B6843F9E244984C400070F52 /* DealCategory+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6843F9C244984C400070F52 /* DealCategory+CoreDataProperties.swift */; };
 		B6843FA0244987A600070F52 /* DealCategoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6843F9F244987A600070F52 /* DealCategoryManager.swift */; };
+		B690AE992451B97800F4CD17 /* DealItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B690AE982451B97800F4CD17 /* DealItem.swift */; };
 		FA603B902427056E007B47E7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA603B8F2427056E007B47E7 /* AppDelegate.swift */; };
 		FA603B922427056E007B47E7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA603B912427056E007B47E7 /* SceneDelegate.swift */; };
 		FA603B942427056E007B47E7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA603B932427056E007B47E7 /* LoginViewController.swift */; };
@@ -80,6 +81,7 @@
 		B6843F9B244984C400070F52 /* DealCategory+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DealCategory+CoreDataClass.swift"; sourceTree = "<group>"; };
 		B6843F9C244984C400070F52 /* DealCategory+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DealCategory+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		B6843F9F244987A600070F52 /* DealCategoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealCategoryManager.swift; sourceTree = "<group>"; };
+		B690AE982451B97800F4CD17 /* DealItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealItem.swift; sourceTree = "<group>"; };
 		BEBB07100949738F80F5107A /* Pods-MyALLin1Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyALLin1Tests.release.xcconfig"; path = "Target Support Files/Pods-MyALLin1Tests/Pods-MyALLin1Tests.release.xcconfig"; sourceTree = "<group>"; };
 		C21B14C6190C377A4AE6B23C /* Pods-MyALLin1Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyALLin1Tests.debug.xcconfig"; path = "Target Support Files/Pods-MyALLin1Tests/Pods-MyALLin1Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		FA603B8C2427056E007B47E7 /* MyALLin1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyALLin1.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -220,6 +222,7 @@
 				407E1DF1244108D300F9CA91 /* SavedLocationManager.swift */,
 				B6158A3B24494DA500C74E92 /* DealAPIRequest.swift */,
 				B6843F9F244987A600070F52 /* DealCategoryManager.swift */,
+				B690AE982451B97800F4CD17 /* DealItem.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -494,6 +497,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B690AE992451B97800F4CD17 /* DealItem.swift in Sources */,
 				402E9E55243914FD00BB296F /* Weather.swift in Sources */,
 				FA603B9A2427056E007B47E7 /* MyALLin1.xcdatamodeld in Sources */,
 				B6158A3A24494CEF00C74E92 /* DealsViewController.swift in Sources */,
