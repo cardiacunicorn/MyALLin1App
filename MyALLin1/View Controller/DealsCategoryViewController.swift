@@ -8,11 +8,11 @@
 
 import UIKit
 
-class DealsCategoryViewController: UIViewController, Refresh  {
+class DealsCategoryViewController: UIViewController  {
     
     @IBOutlet weak var tableView: UITableView!
     
-    var model = DealCategoryManager()
+    var model = DealCategoryManager.sharedInstance
     var currentDealIndex:Int?
     
     override func viewDidLoad() {
@@ -31,7 +31,6 @@ class DealsCategoryViewController: UIViewController, Refresh  {
         }
         let action = UIAlertAction(title: "Add", style: .default) { (_) in
             let name = alert.textFields?.first!.text!
-            print (name!)
             self.model.addDealCategory(name!)
             self.updateUI()
         }

@@ -10,7 +10,7 @@ import Foundation
 
 struct DealItem {
     var title: String
-    var value: Double
+    var value: String
     var currency: String
     var itemUrl: String
     var imageUrl: String

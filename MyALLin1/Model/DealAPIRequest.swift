@@ -8,7 +8,11 @@
 
 import Foundation
 
-class DealAPIRequest{
+protocol RefreshDeals {
+    func updateUI()
+}
+
+class DealAPIRequest {
     
     private let model = DealCategoryManager.sharedInstance
     private let session = URLSession.shared
@@ -21,7 +25,11 @@ class DealAPIRequest{
     
     var access_token = ""
     
-    var searchResults:[DealItem] = []
+    var dealList:[DealItem] = []
+    
+    var delegate:RefreshDeals?
+    
+    static let shared = DealAPIRequest()
     
     // Get the oauth access token required for all api calls
     func getBearerToken() {
@@ -67,7 +75,7 @@ class DealAPIRequest{
                 result = parsedResult as! [String:Any]
                 if result.count > 0 {
                     self.access_token = result["access_token"] as! String
-                    print(self.access_token)
+                    print("eBay access token retrieved and stored.")
                   }
             }
         })
@@ -92,12 +100,14 @@ class DealAPIRequest{
             request.addValue(eBayMarketplaceId, forHTTPHeaderField: "X-EBAY-C-MARKETPLACE-ID")
             request.httpMethod = "GET"
             getCategoryItemsData(request)
+            print("Searching eBay for " + searchTerm)
         }
     }
     
     func getCategoryItemsData(_ request: URLRequest){
         var result = [String:Any]()
         var itemSummaries = [[String:Any]]()
+        
         let task = session.dataTask(with: request, completionHandler: {
             data, response, downloadError in
             
@@ -114,23 +124,33 @@ class DealAPIRequest{
                 
                 result = parsedResult as! [String:Any]
                 itemSummaries = result["itemSummaries"] as! [[String:Any]]
-                
                 for dealItem in itemSummaries {
                     let title = dealItem["title"] as! String
-                    let price = dealItem["price"] as! [String:Any]
-                    let value = price["value"] as! Double
-                    let currency = price["currency"] as! String
+                    //let price = dealItem["price"] as! [String:Any]
+                    //let value = price["value"] as! String
+                    //let currency = price["currency"] as! String
                     let itemUrl = dealItem["itemWebUrl"] as! String
+                    let value = ""
+                    let currency = ""
+                    //let itemUrl = ""
                     let imageUrl = ""
-
+                    
                     let dealItem = DealItem(title: title, value: value, currency: currency, itemUrl: itemUrl, imageUrl:imageUrl)
                     
-                    self.searchResults.append(dealItem)
+                    self.dealList.append(dealItem)
+                    print("Adding " + title)
+                    
                 }
-                
-                print(itemSummaries)
             }
+            
         })
         task.resume()
+    }
+    
+    func getAllDealCategoryItems() {
+        for deal in model.getCategoryList() {
+            let categoryName = deal.name!
+            getCategoryItems(searchTerm: categoryName)
+        }
     }
 }
