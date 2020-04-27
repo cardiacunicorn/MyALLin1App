@@ -10,9 +10,10 @@ import UIKit
 import Swifter
 
 class LoginViewController: UIViewController {
-    let consumerKey = "0bxAILPpJ4gORixVzWJfahjRV"
-    let consumerSecret = "zaDny7HAqqirRrFvrQ6SBq0s9eCuYTBAcBRKrMjqR2UmNXEz5G"
+    private let consumerKey = "0bxAILPpJ4gORixVzWJfahjRV"
+    private let consumerSecret = "zaDny7HAqqirRrFvrQ6SBq0s9eCuYTBAcBRKrMjqR2UmNXEz5G"
     let swifter = Swifter(consumerKey: "0bxAILPpJ4gORixVzWJfahjRV", consumerSecret: "zaDny7HAqqirRrFvrQ6SBq0s9eCuYTBAcBRKrMjqR2UmNXEz5G")
+    private var result: [JSON] = []
     
     // MARK: - Buttons
     
@@ -30,8 +31,6 @@ class LoginViewController: UIViewController {
     // MARK: ViewController Functions
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("Login view loaded.")
-        
     }
     
     func authorise() {
@@ -41,16 +40,13 @@ class LoginViewController: UIViewController {
             presentingFrom: self,
             success: {
                 (token, response) in
-                print("You are now authorised through Twitter")
-                print(token)
-                
-                // TODO: Save token
-                
+                if let token = token {
+                    print("You are now authorised through Twitter. Token: \(token)")
+                }
             },
             failure: {
                 (error) in
-                print("Error in authorisation process")
-                print(error)
+                print("Error in authorisation process: \(error)")
             }
         )
     }
@@ -60,13 +56,19 @@ class LoginViewController: UIViewController {
             count: 10,
             success: {
                 (json) in
-                print("Response: ")
-                print(json)
+                self.result = json.array ?? []
+                print("First tweet text: \(json[0]["text"].string)")
             },
             failure: { (error) in
                 print(error)
             }
         )
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Hand the tweets to the next view controller
+        // guard let destination = segue.destination as? TimelineViewController else { return }
+        // destination.tweets = result
     }
 }
 
