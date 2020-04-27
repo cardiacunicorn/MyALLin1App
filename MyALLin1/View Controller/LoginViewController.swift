@@ -11,14 +11,14 @@ import STTwitter
 import Swifter
 
 class LoginViewController: UIViewController {
+    let consumerKey = "0bxAILPpJ4gORixVzWJfahjRV"
+    let consumerSecret = "zaDny7HAqqirRrFvrQ6SBq0s9eCuYTBAcBRKrMjqR2UmNXEz5G"
     
     let twitterapi = STTwitterAPI(appOnlyWithConsumerKey: "0bxAILPpJ4gORixVzWJfahjRV", consumerSecret: "zaDny7HAqqirRrFvrQ6SBq0s9eCuYTBAcBRKrMjqR2UmNXEz5G")
     
     var api = STTwitterAPI.init()
     
     let swifter = Swifter(consumerKey: "0bxAILPpJ4gORixVzWJfahjRV", consumerSecret: "zaDny7HAqqirRrFvrQ6SBq0s9eCuYTBAcBRKrMjqR2UmNXEz5G")
-    
-    let alexstwitter = STTwitterAPI(oAuthConsumerKey: "0bxAILPpJ4gORixVzWJfahjRV", consumerSecret: "zaDny7HAqqirRrFvrQ6SBq0s9eCuYTBAcBRKrMjqR2UmNXEz5G", oauthToken: "2849820361-VDYgYPW59D62Eyt3DtzMGJJdSEr1WLPGKCyoTS2", oauthTokenSecret: "QieOqVMKm7KR8IXAwpcWn9XI7hFDZ7CgcdZTtptQyb1eR")
     
     var username = ""
     var password = ""
@@ -29,6 +29,8 @@ class LoginViewController: UIViewController {
     @IBAction func loginButton(_ sender: Any) {
         
         getLoginDetails()
+        
+        verifyTwitterKit()
         verifySTTwitter()
         // verifySwifter()
         
@@ -53,22 +55,14 @@ class LoginViewController: UIViewController {
     
     func getLoginDetails() {
         username = "cardiacunicorn"
-        password = "darkstar1337"
+        password = ""
+    }
+    
+    func verifyTwitterKit() {
+        
     }
     
     func verifySTTwitter() {
-        
-        // MARK: Verify with entered username & password
-//        let twitter = STTwitterOAuth(consumerName: "MyALLin1App", consumerKey: "0bxAILPpJ4gORixVzWJfahjRV", consumerSecret: "zaDny7HAqqirRrFvrQ6SBq0s9eCuYTBAcBRKrMjqR2UmNXEz5G", username: username, password: password)
-//
-//        twitter?.verifyCredentialsRemotely(
-//            successBlock: { (token, value) in
-//                print(token)
-//                print(value)
-//        },
-//            errorBlock: { (e) in
-//                print(e)
-//        })
         
         api = STTwitterAPI(oAuthConsumerKey: "0bxAILPpJ4gORixVzWJfahjRV", consumerSecret: "zaDny7HAqqirRrFvrQ6SBq0s9eCuYTBAcBRKrMjqR2UmNXEz5G")
         api.postTokenRequest(
@@ -89,14 +83,11 @@ class LoginViewController: UIViewController {
             }
         )
         
-        print(api)
-        
-        // MARK: Verify with known OAuth Token & Secret
         api.verifyCredentials(
             userSuccessBlock: { // What to do if credentials are verified
                 (username, userId) -> Void in
                 print(username ?? "No username", userId ?? "No user ID")
-                self.getTimeline()
+                self.getTimeline(self.api)
 
             },
             errorBlock: {
@@ -105,32 +96,13 @@ class LoginViewController: UIViewController {
             }
         )
         
-        // MARK: Verify with known OAuth Token & Secret
-//        alexstwitter?.verifyCredentials(
-//            userSuccessBlock: { // What to do if credentials are verified
-//                (username, userId) -> Void in
-//                print(username ?? "No username", userId ?? "No user ID")
-//                self.getTimeline()
-//
-//            },
-//            errorBlock: {
-//                (error) -> Void in
-//                print(error as Any)
-//            }
-//        )
-    }
     
-    func getTimeline() {
-        self.twitterapi?.getHomeTimeline(
-            sinceID: nil,
-            count: 1, // How many statuses will be returned
-            successBlock: { // What to do with retrieved timeline statuses
-                (statuses) -> Void in
-
-                for status in statuses! {
-                    print(status)
-                    // TODO: Process status JSON
-                }
+        
+        api.verifyCredentials(
+            userSuccessBlock: { // What to do if credentials are verified
+                (username, userId) -> Void in
+                print(username ?? "No username", userId ?? "No user ID")
+                self.getTimeline(self.api)
 
             },
             errorBlock: {
@@ -138,6 +110,9 @@ class LoginViewController: UIViewController {
                 print(error as Any)
             }
         )
+        
+        verifyWithUsernamePassword()
+        verifyWithKnownOAuth()
     }
     
     func verifySwifter() {
@@ -156,6 +131,57 @@ class LoginViewController: UIViewController {
                 }
             )
         }
+    }
+    
+    func verifyWithUsernamePassword() {
+        let twitter = STTwitterOAuth(consumerName: "MyALLin1App", consumerKey: "0bxAILPpJ4gORixVzWJfahjRV", consumerSecret: "zaDny7HAqqirRrFvrQ6SBq0s9eCuYTBAcBRKrMjqR2UmNXEz5G", username: username, password: password)
+
+        twitter?.verifyCredentialsRemotely(
+            successBlock: { (token, value) in
+                print(token)
+                print(value)
+        },
+            errorBlock: { (e) in
+                print(e)
+        })
+    }
+    
+    func verifyWithKnownOAuth() {
+        if let alexstwitter = STTwitterAPI(oAuthConsumerKey: consumerKey, consumerSecret: consumerSecret, oauthToken: "2849820361-VDYgYPW59D62Eyt3DtzMGJJdSEr1WLPGKCyoTS2", oauthTokenSecret: "QieOqVMKm7KR8IXAwpcWn9XI7hFDZ7CgcdZTtptQyb1eR") {
+            
+            alexstwitter.verifyCredentials(
+                userSuccessBlock: { // What to do if credentials are verified
+                    (username, userId) -> Void in
+                    print(username ?? "No username", userId ?? "No user ID")
+                    self.getTimeline(alexstwitter)
+
+                },
+                errorBlock: {
+                    (error) -> Void in
+                    print(error as Any)
+                }
+            )
+        }
+    }
+    
+    func getTimeline(_ api:STTwitterAPI) {
+        self.api.getHomeTimeline(
+            sinceID: nil,
+            count: 1, // How many statuses will be returned
+            successBlock: { // What to do with retrieved timeline statuses
+                (statuses) -> Void in
+
+                for status in statuses! {
+                    print(status)
+                    // TODO: Process status JSON
+                }
+
+            },
+            errorBlock: {
+                (error) -> Void in
+                print(error as Any)
+            }
+        )
     }
     
 }
