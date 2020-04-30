@@ -12,7 +12,7 @@ import Swifter
 class LoginViewController: UIViewController {
     private let consumerKey = "0bxAILPpJ4gORixVzWJfahjRV"
     private let consumerSecret = "zaDny7HAqqirRrFvrQ6SBq0s9eCuYTBAcBRKrMjqR2UmNXEz5G"
-    let swifter = Swifter(consumerKey: "0bxAILPpJ4gORixVzWJfahjRV", consumerSecret: "zaDny7HAqqirRrFvrQ6SBq0s9eCuYTBAcBRKrMjqR2UmNXEz5G")
+    private let swifter = Swifter(consumerKey: "0bxAILPpJ4gORixVzWJfahjRV", consumerSecret: "zaDny7HAqqirRrFvrQ6SBq0s9eCuYTBAcBRKrMjqR2UmNXEz5G")
     private var result: [JSON] = []
     
     // MARK: - Buttons
@@ -24,7 +24,7 @@ class LoginViewController: UIViewController {
     
     // MARK: Logout button
     @IBAction func logoutButton(_ sender: Any) {
-        getTimeline()
+        
     }
     
     // MARK: - Functions
@@ -40,9 +40,8 @@ class LoginViewController: UIViewController {
             presentingFrom: self,
             success: {
                 (token, response) in
-                if let token = token {
-                    print("You are now authorised through Twitter. Token: \(token)")
-                }
+                print("You are now authorised through Twitter")
+                self.getTimeline()
             },
             failure: {
                 (error) in
@@ -53,11 +52,11 @@ class LoginViewController: UIViewController {
     
     func getTimeline() {
         swifter.getHomeTimeline(
-            count: 10,
+            count: 25,
             success: {
                 (json) in
                 self.result = json.array ?? []
-                print("First tweet text: \(json[0]["text"].string)")
+                print("Timeline retrieved. First tweet text: \(String(describing: json[0]["text"].string))")
             },
             failure: { (error) in
                 print(error)
@@ -66,9 +65,8 @@ class LoginViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Hand the tweets to the next view controller
-        // guard let destination = segue.destination as? TimelineViewController else { return }
-        // destination.tweets = result
+        guard let destination = segue.destination as? FeedViewController else { return }
+        destination.tweets = result
     }
 }
 
