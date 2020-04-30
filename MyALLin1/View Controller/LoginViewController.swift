@@ -7,65 +7,68 @@
 //
 
 import UIKit
-import STTwitter
+import Swifter
 
 class LoginViewController: UIViewController {
+    private let consumerKey = "0bxAILPpJ4gORixVzWJfahjRV"
+    private let consumerSecret = "zaDny7HAqqirRrFvrQ6SBq0s9eCuYTBAcBRKrMjqR2UmNXEz5G"
+    let swifter = Swifter(consumerKey: "0bxAILPpJ4gORixVzWJfahjRV", consumerSecret: "zaDny7HAqqirRrFvrQ6SBq0s9eCuYTBAcBRKrMjqR2UmNXEz5G")
+    private var result: [JSON] = []
     
     // MARK: - Buttons
     
     // MARK: Login Button
     @IBAction func loginButton(_ sender: Any) {
-        
+        authorise()
     }
     
     // MARK: Logout button
     @IBAction func logoutButton(_ sender: Any) {
-        
+        getTimeline()
     }
     
     // MARK: - Functions
     // MARK: ViewController Functions
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        print("Login view loaded.")
-        
-        // MARK: STTwitter Instantiation
-        // Not sure if this is just going to authorise me, or each user?
-        let twitter = STTwitterAPI(oAuthConsumerKey: "0bxAILPpJ4gORixVzWJfahjRV", consumerSecret: "zaDny7HAqqirRrFvrQ6SBq0s9eCuYTBAcBRKrMjqR2UmNXEz5G", oauthToken: "2849820361-VDYgYPW59D62Eyt3DtzMGJJdSEr1WLPGKCyoTS2", oauthTokenSecret: "QieOqVMKm7KR8IXAwpcWn9XI7hFDZ7CgcdZTtptQyb1eR")
-        
-        // MARK: STTwitter Login
-        twitter?.verifyCredentials(
-            userSuccessBlock: { // What to do if credentials are verified
-                (username, userId) -> Void in
-                print(username ?? "No username", userId ?? "No user ID")
-                
-                // MARK: Get Timeline
-                twitter?.getHomeTimeline(
-                    sinceID: nil,
-                    count: 2, // How many statuses will be returned
-                    successBlock: { // What to do with retrieved timeline statuses
-                        (statuses) -> Void in
-                        
-                        for status in statuses! {
-                            print(status)
-                            // TODO: Process status JSON
-                        }
-                        
-                    },
-                    errorBlock: {
-                        (error) -> Void in
-                        print(error as Any)
-                    }
-                )
-                
+    }
+    
+    func authorise() {
+        let landingURL = URL(string: "MyALLin1://success")!
+        swifter.authorize(
+            withCallback: landingURL,
+            presentingFrom: self,
+            success: {
+                (token, response) in
+                if let token = token {
+                    print("You are now authorised through Twitter. Token: \(token)")
+                }
             },
-            errorBlock: {
-                (error) -> Void in
-                print(error as Any)
+            failure: {
+                (error) in
+                print("Error in authorisation process: \(error)")
             }
         )
-        
+    }
+    
+    func getTimeline() {
+        swifter.getHomeTimeline(
+            count: 10,
+            success: {
+                (json) in
+                self.result = json.array ?? []
+                print("First tweet text: \(json[0]["text"].string)")
+            },
+            failure: { (error) in
+                print(error)
+            }
+        )
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Hand the tweets to the next view controller
+        // guard let destination = segue.destination as? TimelineViewController else { return }
+        // destination.tweets = result
     }
 }
 
