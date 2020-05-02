@@ -70,17 +70,22 @@ class DealsViewController: UIViewController, UICollectionViewDataSource, UIColle
         let imageURL = dealList[indexPath.item].imageUrl
         
         //Display information from API as text
-        cell.categoryName.text = dealCategory
+        cell.categoryName.text = dealCategory.uppercased()
         cell.itemDescription.text = dealTitle
         cell.itemPrice.text = "$" + dealPrice + " " + dealCurrency
         
-        // Display image url as image
-        if let url = URL(string: imageURL) {
-            do {
-                let data = try Data(contentsOf: url)
-                cell.itemImage.image = UIImage(data: data)
-            } catch let err {
-                print ("Error : \(err.localizedDescription)")
+        //If no image provided from API display ebay logo, else display image URL as image
+        if imageURL == "" {
+            cell.itemImage.image = UIImage(named: "eBayLogo.jpg")
+        }
+        else {
+            if let url = URL(string: imageURL) {
+                do {
+                    let data = try Data(contentsOf: url)
+                    cell.itemImage.image = UIImage(data: data)
+                } catch let err {
+                    print ("Error : \(err.localizedDescription)")
+                }
             }
         }
         return cell

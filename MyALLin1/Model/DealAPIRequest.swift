@@ -132,9 +132,7 @@ class DealAPIRequest {
                         let currency = price["currency"] as? String ?? ""
                         let itemUrl = dealItem["itemWebUrl"] as? String ?? "https://www.ebay.com.au"
                         let image = dealItem["image"] as? [String:Any]
-                        //TODO: Update this default image to be a locally stored image
-                        let imageUrl = image?["imageUrl"] as? String ?? "https://nakedsecurity.sophos.com/wp-content/uploads/sites/2/2012/10/ebay-logos-thumb.jpg"
-                        
+                        let imageUrl = image?["imageUrl"] as? String ?? ""
                         let dealItem = DealItem(category: category, title: title, value: value, currency: currency, itemUrl: itemUrl, imageUrl:imageUrl)
                         
                         self.dealList.append(dealItem)
