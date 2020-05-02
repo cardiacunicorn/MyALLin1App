@@ -20,10 +20,11 @@ class DealCategoryManager {
 
     // Array for deal category
     var dealCategoryList = [DealCategory]()
-    
+
     // Get all deal categorys and store in array
     func fetchDealCategorys()
     {
+        print("Fetching deal categories from DB")
         // Get all deal category records
         let dealCategoryRequest: NSFetchRequest<DealCategory> = DealCategory.fetchRequest()
         // Update array to store deal category results
@@ -42,6 +43,7 @@ class DealCategoryManager {
     
     // Get a list of deal categorys
     func getCategoryList() -> [DealCategory]{
+        fetchDealCategorys()
         return dealCategoryList
     }
     

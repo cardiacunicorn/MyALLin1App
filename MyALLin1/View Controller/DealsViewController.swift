@@ -15,13 +15,15 @@ class DealsViewController: UIViewController, UICollectionViewDataSource, UIColle
     var model = DealCategoryManager()
     var rest = DealAPIRequest.shared
     
+    // Stores the deal items to be displayed
     var dealList:[DealItem] {
         get { return rest.dealList}
+        set { rest.dealList = newValue }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        // Layout settings of collection view
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         let width = UIScreen.main.bounds.width
         layout.sectionInset = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
@@ -32,11 +34,8 @@ class DealsViewController: UIViewController, UICollectionViewDataSource, UIColle
         
         rest.delegate = self
         collectionView.dataSource = self
+        
         getAllDealCategoryItems()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        updateUI()
     }
     
     func updateUI() {
@@ -53,24 +52,29 @@ class DealsViewController: UIViewController, UICollectionViewDataSource, UIColle
         }
     }
     
+    // Set the size of the collection to equal the amount of deals items in the array
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         print("Total deals in array: " + String(dealList.count))
         return dealList.count
     }
     
+    // Configuration of cell in collectionview
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "dealsCell", for: indexPath) as! DealsCell
-
+        
+        // Variables to store deal item information in
         let dealCategory = dealList[indexPath.item].category
         let dealTitle = dealList[indexPath.item].title
         let dealPrice = dealList[indexPath.item].value
         let dealCurrency = dealList[indexPath.item].currency
         let imageURL = dealList[indexPath.item].imageUrl
         
+        //Display information from API as text
         cell.categoryName.text = dealCategory
         cell.itemDescription.text = dealTitle
         cell.itemPrice.text = "$" + dealPrice + " " + dealCurrency
         
+        // Display image url as image
         if let url = URL(string: imageURL) {
             do {
                 let data = try Data(contentsOf: url)
@@ -82,15 +86,10 @@ class DealsViewController: UIViewController, UICollectionViewDataSource, UIColle
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-          let padding: CGFloat =  50
-          let collectionViewSize = collectionView.frame.size.width - padding
-
-          return CGSize(width: collectionViewSize/2, height: collectionViewSize/2)
-      }
-    
+    // Clear all deal items, then get a new list of deal items.
     func getAllDealCategoryItems() {
         print("Getting all deal items")
+        dealList = []
         for deal in model.getCategoryList() {
             let categoryName = deal.name!
             rest.getCategoryItems(searchTerm: categoryName)

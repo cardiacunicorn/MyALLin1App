@@ -14,13 +14,13 @@ protocol RefreshDeals {
 
 class DealAPIRequest {
     
-    private let model = DealCategoryManager.sharedInstance
-    private let session = URLSession.shared
     private let base_url = "https://api.sandbox.ebay.com/"
     private let client_id = "ChrisBow-MyALLin1-SBX-07aad0465-7eb61783"
     private let client_secret = "SBX-7aad0465b9d4-949d-4bcf-9922-e0dc"
-    var access_token = ""
+    private var access_token = ""
     
+    private let model = DealCategoryManager.sharedInstance
+    private let session = URLSession.shared
     var task:URLSessionTask?
     var delegate:RefreshDeals?
     static let shared = DealAPIRequest()
@@ -51,7 +51,6 @@ class DealAPIRequest {
     // Get access token data required for all api calls
     func getBearerTokenData(_ request: URLRequest) {
         var result = [String:Any]()
-        print(access_token)
         if access_token == "" {
             task = session.dataTask(with: request, completionHandler: {
                 data, response, downloadError in
@@ -85,7 +84,8 @@ class DealAPIRequest {
         let eBayMarketplaceId = "EBAY_AU"
         let url = base_url + apiType + itemParameter + searchTerm
         let escapedAddress = url.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
-        
+
+        //TODO: Remove the sleep and put in proper tasking to the API call first waits for the oauth token to first be retrieved before making the call
         getBearerToken()
         sleep(2)
         if let url = URL(string: escapedAddress!) {
@@ -119,19 +119,18 @@ class DealAPIRequest {
                 catch{print()}
                 
                 result = parsedResult as! [String:Any]
-                //print(result)
                 totalItems = result["total"] as! Int
                 if totalItems > 0 {
                     itemSummaries = result["itemSummaries"] as! [[String:Any]]
-                    //print (itemSummaries)
                     for dealItem in itemSummaries {
                         let category = searchTerm 
-                        let title = dealItem["title"] as! String
+                        let title = dealItem["title"] as? String ?? ""
                         let price = dealItem["price"] as! [String:Any]
-                        let value = price["value"] as! String
-                        let currency = price["currency"] as! String
-                        let itemUrl = dealItem["itemWebUrl"] as! String
-                        let imageUrl = "https://nakedsecurity.sophos.com/wp-content/uploads/sites/2/2012/10/ebay-logos-thumb.jpg"
+                        let value = price["value"] as? String ?? "0.00"
+                        let currency = price["currency"] as? String ?? ""
+                        let itemUrl = dealItem["itemWebUrl"] as? String ?? "https://www.ebay.com.au"
+                        let image = dealItem["image"] as? [String:Any]
+                        let imageUrl = image?["imageUrl"] as? String ?? "https://nakedsecurity.sophos.com/wp-content/uploads/sites/2/2012/10/ebay-logos-thumb.jpg"
                         
                         let dealItem = DealItem(category: category, title: title, value: value, currency: currency, itemUrl: itemUrl, imageUrl:imageUrl)
                         
@@ -139,12 +138,14 @@ class DealAPIRequest {
                         print("Adding " + title)
                     }
                 }
+                else {
+                    print("No items found for " + searchTerm)
+                }
+                
+                DispatchQueue.main.async {
+                    self.delegate?.updateUI()
+                }
             }
-            
-            DispatchQueue.main.async {
-                self.delegate?.updateUI()
-            }
-            
         })
         task!.resume()
     }

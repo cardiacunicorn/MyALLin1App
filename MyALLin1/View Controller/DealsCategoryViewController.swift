@@ -19,9 +19,8 @@ class DealsCategoryViewController: UIViewController  {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
-        updateUI()
     }
-    
+
     func updateUI() {
         tableView.reloadData()
     }
@@ -34,8 +33,8 @@ class DealsCategoryViewController: UIViewController  {
         let action = UIAlertAction(title: "Add", style: .default) { (_) in
             let name = alert.textFields?.first!.text!
             self.model.addDealCategory(name!)
-            self.model.fetchDealCategorys()
             self.updateUI()
+            self.dealViewController.getAllDealCategoryItems()
         }
         alert.addAction(action)
         present(alert, animated: true, completion: nil)
@@ -68,8 +67,8 @@ extension DealsCategoryViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             model.deleteDealCategory(dealCategory: model.getCategory(index: indexPath.row))
-            model.fetchDealCategorys()
             updateUI()
+            self.dealViewController.getAllDealCategoryItems()
         }
     }
 }
