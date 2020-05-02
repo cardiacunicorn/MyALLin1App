@@ -19,17 +19,16 @@ class DealCategoryManager {
     let managedContext: NSManagedObjectContext
 
     // Array for deal category
-    var dealCategoryResults = [DealCategory]()
+    var dealCategoryList = [DealCategory]()
     
     // Get all deal categorys and store in array
     func fetchDealCategorys()
     {
         // Get all deal category records
         let dealCategoryRequest: NSFetchRequest<DealCategory> = DealCategory.fetchRequest()
-        
-        // update array to store deal category results
+        // Update array to store deal category results
         do {
-            dealCategoryResults = try managedContext.fetch(dealCategoryRequest)
+            dealCategoryList = try managedContext.fetch(dealCategoryRequest)
         }
         catch{
             print()
@@ -43,7 +42,7 @@ class DealCategoryManager {
     
     // Get a list of deal categorys
     func getCategoryList() -> [DealCategory]{
-        return dealCategoryResults
+        return dealCategoryList
     }
     
     // Get a total count of deal categorys
@@ -52,20 +51,16 @@ class DealCategoryManager {
     }
     
     // Get a deal category name
-    func getCategoryDetails(index: Int) -> (String){
-        
+    func getCategoryName(index: Int) -> (String){
         let category = getCategory(index: index)
         let name = category.name!
-    
         return (name)
     }
     
     // Add a new deal category
     func addDealCategory (_ name: String) {
         let newDealCategory = NSEntityDescription.insertNewObject(forEntityName: "DealCategory", into: managedContext) as! DealCategory
-        
         newDealCategory.name = name
-        
         appDelegate.saveContext()
     }
     

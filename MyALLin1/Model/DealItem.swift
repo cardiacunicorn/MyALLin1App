@@ -9,6 +9,7 @@
 import Foundation
 
 struct DealItem {
+    var category: String
     var title: String
     var value: String
     var currency: String
