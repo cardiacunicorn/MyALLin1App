@@ -43,7 +43,6 @@ class DealCategoryManager {
     
     // Get a list of deal categorys
     func getCategoryList() -> [DealCategory]{
-        fetchDealCategorys()
         return dealCategoryList
     }
     
@@ -64,12 +63,14 @@ class DealCategoryManager {
         let newDealCategory = NSEntityDescription.insertNewObject(forEntityName: "DealCategory", into: managedContext) as! DealCategory
         newDealCategory.name = name
         appDelegate.saveContext()
+        fetchDealCategorys()
     }
     
     // Delete an existing deal category
     func deleteDealCategory(dealCategory: DealCategory){
         managedContext.delete(dealCategory)
         appDelegate.saveContext()
+        fetchDealCategorys()
     }
     
     fileprivate struct Static{

@@ -51,7 +51,10 @@ class DealAPIRequest {
     // Get access token data required for all api calls
     func getBearerTokenData(_ request: URLRequest) {
         var result = [String:Any]()
+        
+        
         if access_token == "" {
+            let semaphore = DispatchSemaphore(value: 0)
             task = session.dataTask(with: request, completionHandler: {
                 data, response, downloadError in
                 
@@ -71,9 +74,11 @@ class DealAPIRequest {
                         self.access_token = result["access_token"] as! String
                         print("eBay access token retrieved and stored.")
                       }
+                    semaphore.signal()
                 }
             })
             task!.resume()
+            semaphore.wait()
         }
     }
     
@@ -84,10 +89,7 @@ class DealAPIRequest {
         let eBayMarketplaceId = "EBAY_AU"
         let url = base_url + apiType + itemParameter + searchTerm
         let escapedAddress = url.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
-
-        //TODO: Remove the sleep and put in proper tasking to the API call first waits for the oauth token to first be retrieved before making the call
         getBearerToken()
-        sleep(2)
         if let url = URL(string: escapedAddress!) {
             var request = URLRequest(url: url)
             request.addValue("Bearer " + self.access_token, forHTTPHeaderField: "Authorization")
@@ -130,6 +132,7 @@ class DealAPIRequest {
                         let currency = price["currency"] as? String ?? ""
                         let itemUrl = dealItem["itemWebUrl"] as? String ?? "https://www.ebay.com.au"
                         let image = dealItem["image"] as? [String:Any]
+                        //TODO: Update this default image to be a locally stored image
                         let imageUrl = image?["imageUrl"] as? String ?? "https://nakedsecurity.sophos.com/wp-content/uploads/sites/2/2012/10/ebay-logos-thumb.jpg"
                         
                         let dealItem = DealItem(category: category, title: title, value: value, currency: currency, itemUrl: itemUrl, imageUrl:imageUrl)

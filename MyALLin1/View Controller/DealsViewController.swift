@@ -89,6 +89,7 @@ class DealsViewController: UIViewController, UICollectionViewDataSource, UIColle
     // Clear all deal items, then get a new list of deal items.
     func getAllDealCategoryItems() {
         print("Getting all deal items")
+        model.fetchDealCategorys()
         dealList = []
         for deal in model.getCategoryList() {
             let categoryName = deal.name!
