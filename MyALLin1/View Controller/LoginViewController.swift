@@ -12,25 +12,35 @@ import Swifter
 class LoginViewController: UIViewController {
     private let consumerKey = "0bxAILPpJ4gORixVzWJfahjRV"
     private let consumerSecret = "zaDny7HAqqirRrFvrQ6SBq0s9eCuYTBAcBRKrMjqR2UmNXEz5G"
-    private let swifter = Swifter(consumerKey: "0bxAILPpJ4gORixVzWJfahjRV", consumerSecret: "zaDny7HAqqirRrFvrQ6SBq0s9eCuYTBAcBRKrMjqR2UmNXEz5G")
-    private var result: [JSON] = []
     
-    // MARK: - Buttons
+    
+    private var swifter = Swifter(consumerKey: "0bxAILPpJ4gORixVzWJfahjRV", consumerSecret: "zaDny7HAqqirRrFvrQ6SBq0s9eCuYTBAcBRKrMjqR2UmNXEz5G")
+    private var result: [JSON] = []
+    private var loggedIn = false
+    
+    // MARK: - Button(s)
+    @IBOutlet var button: UIButton!
     
     // MARK: Login Button
     @IBAction func loginButton(_ sender: Any) {
-        authorise()
-    }
-    
-    // MARK: Logout button
-    @IBAction func logoutButton(_ sender: Any) {
-        
+        // Authorise them if credentials don't already exist
+        // If the user is already logged in, assume button has changed state to 'Log Out' and overwrite credentials
+        if (!loggedIn) {
+            authorise()
+        } else {
+            swifter = Swifter(consumerKey: "0bxAILPpJ4gORixVzWJfahjRV", consumerSecret: "zaDny7HAqqirRrFvrQ6SBq0s9eCuYTBAcBRKrMjqR2UmNXEz5G")
+            self.button.setTitle("Log in to Twitter", for: .normal)
+            self.button.setTitleColor(UIColor.white, for: .normal)
+            self.button.backgroundColor = UIColor.systemBlue
+            loggedIn = false
+        }
     }
     
     // MARK: - Functions
     // MARK: ViewController Functions
     override func viewDidLoad() {
         super.viewDidLoad()
+        
     }
     
     func authorise() {
@@ -41,6 +51,7 @@ class LoginViewController: UIViewController {
             success: {
                 (token, response) in
                 print("You are now authorised through Twitter")
+                self.loggedIn = true
                 self.getTimeline()
             },
             failure: {
@@ -55,8 +66,11 @@ class LoginViewController: UIViewController {
             count: 25,
             success: {
                 (json) in
+                self.button.setTitle("Log out", for: .normal)
+                self.button.setTitleColor(UIColor.red, for: .normal)
+                self.button.backgroundColor = UIColor.white
                 self.result = json.array ?? []
-                print("Timeline retrieved. First tweet text: \(String(describing: json[0]["text"].string))")
+                self.performSegue(withIdentifier: "viewFeed", sender: nil)
             },
             failure: { (error) in
                 print(error)
