@@ -12,8 +12,6 @@ import Swifter
 class LoginViewController: UIViewController {
     private let consumerKey = "0bxAILPpJ4gORixVzWJfahjRV"
     private let consumerSecret = "zaDny7HAqqirRrFvrQ6SBq0s9eCuYTBAcBRKrMjqR2UmNXEz5G"
-    
-    
     private var swifter = Swifter(consumerKey: "0bxAILPpJ4gORixVzWJfahjRV", consumerSecret: "zaDny7HAqqirRrFvrQ6SBq0s9eCuYTBAcBRKrMjqR2UmNXEz5G")
     private var result: [JSON] = []
     private var loggedIn = false
@@ -81,6 +79,7 @@ class LoginViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let destination = segue.destination as? FeedViewController else { return }
         destination.tweets = result
+        destination.swifter = swifter
     }
 }
 

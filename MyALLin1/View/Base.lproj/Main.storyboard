@@ -176,7 +176,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Tweet" id="Lyn-qw-awP">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Tweet" id="Lyn-qw-awP" customClass="TweetCell" customModule="MyALLin1" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="320" height="95.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Lyn-qw-awP" id="wf2-il-ytJ">
@@ -205,6 +205,9 @@
                                             <state key="normal" title="12345" image="heart" catalog="system">
                                                 <color key="titleColor" red="1" green="0.43921568630000002" blue="0.36470588240000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             </state>
+                                            <connections>
+                                                <action selector="tappedLike:" destination="Lyn-qw-awP" eventType="touchUpInside" id="xd3-39-K6L"/>
+                                            </connections>
                                         </button>
                                         <button opaque="NO" tag="1004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="wEB-lE-RyS">
                                             <rect key="frame" x="93" y="69" width="22.5" height="22.5"/>
@@ -213,6 +216,9 @@
                                             <state key="normal" image="bubble.right" catalog="system">
                                                 <color key="titleColor" red="1" green="0.43921568630000002" blue="0.36470588240000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             </state>
+                                            <connections>
+                                                <action selector="tappedComment:" destination="Lyn-qw-awP" eventType="touchUpInside" id="s41-p2-npO"/>
+                                            </connections>
                                         </button>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1002" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EJE-Sv-k2j">
                                             <rect key="frame" x="8" y="4" width="36" height="36"/>
@@ -231,6 +237,9 @@
                                             <state key="normal" title="78910" image="repeat" catalog="system">
                                                 <color key="titleColor" red="1" green="0.43921568630000002" blue="0.36470588240000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             </state>
+                                            <connections>
+                                                <action selector="tappedRetweet:" destination="Lyn-qw-awP" eventType="touchUpInside" id="Cdq-cN-8Er"/>
+                                            </connections>
                                         </button>
                                         <button opaque="NO" tag="1006" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="7I8-Nt-r39">
                                             <rect key="frame" x="212.5" y="69" width="19" height="22.5"/>
@@ -238,6 +247,9 @@
                                             <state key="normal" image="square.and.arrow.up" catalog="system">
                                                 <color key="titleColor" red="1" green="0.43921568630000002" blue="0.36470588240000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             </state>
+                                            <connections>
+                                                <action selector="tappedShare:" destination="Lyn-qw-awP" eventType="touchUpInside" id="hb3-As-hgB"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <constraints>

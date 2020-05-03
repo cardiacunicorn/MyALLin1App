@@ -25,6 +25,7 @@
 		A923BC5FE60D753307F95E8D /* Pods_MyALLin1Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9A2ECDFFD9B045181BEB8FB /* Pods_MyALLin1Tests.framework */; };
 		B632FAFE2435E09A0072739E /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B632FAFD2435E09A0072739E /* MapViewController.swift */; };
 		B632FB002435EFEB0072739E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B632FAFF2435EFEB0072739E /* CoreLocation.framework */; };
+		FA01325D245F0F5500FBD3A5 /* TweetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA01325C245F0F5500FBD3A5 /* TweetCell.swift */; };
 		FA251EB0245AFEF8001F1426 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA251EAF245AFEF8001F1426 /* FeedViewController.swift */; };
 		FA603B902427056E007B47E7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA603B8F2427056E007B47E7 /* AppDelegate.swift */; };
 		FA603B922427056E007B47E7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA603B912427056E007B47E7 /* SceneDelegate.swift */; };
@@ -79,6 +80,7 @@
 		B632FAFF2435EFEB0072739E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		BEBB07100949738F80F5107A /* Pods-MyALLin1Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyALLin1Tests.release.xcconfig"; path = "Target Support Files/Pods-MyALLin1Tests/Pods-MyALLin1Tests.release.xcconfig"; sourceTree = "<group>"; };
 		C21B14C6190C377A4AE6B23C /* Pods-MyALLin1Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyALLin1Tests.debug.xcconfig"; path = "Target Support Files/Pods-MyALLin1Tests/Pods-MyALLin1Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		FA01325C245F0F5500FBD3A5 /* TweetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetCell.swift; sourceTree = "<group>"; };
 		FA251EAF245AFEF8001F1426 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		FA603B8C2427056E007B47E7 /* MyALLin1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyALLin1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA603B8F2427056E007B47E7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -206,6 +208,7 @@
 		FA603BC2242706A7007B47E7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				FA01325C245F0F5500FBD3A5 /* TweetCell.swift */,
 				407E1DED2441086A00F9CA91 /* SavedLocation+CoreDataClass.swift */,
 				407E1DEE2441086A00F9CA91 /* SavedLocation+CoreDataProperties.swift */,
 				FA603B982427056E007B47E7 /* MyALLin1.xcdatamodeld */,
@@ -498,6 +501,7 @@
 				FA251EB0245AFEF8001F1426 /* FeedViewController.swift in Sources */,
 				407E1DE4243F7FC000F9CA91 /* CityAPIRequest.swift in Sources */,
 				40745B96244D071B00B968EE /* NewsItem.swift in Sources */,
+				FA01325D245F0F5500FBD3A5 /* TweetCell.swift in Sources */,
 				40745B9A2454DF4100B968EE /* NewsDetailViewController.swift in Sources */,
 				402E9E53243914D300BB296F /* WeatherAPIRequest.swift in Sources */,
 				407E1DF2244108D300F9CA91 /* SavedLocationManager.swift in Sources */,
