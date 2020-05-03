@@ -35,8 +35,38 @@ class FeedViewController: UITableViewController {
         tweetText.text = tweets[indexPath.row]["text"].string
         let username = cell.viewWithTag(1001) as! UILabel
         username.text = "@\(tweets[indexPath.row]["user"]["screen_name"].string!)"
-        let profilepic = cell.viewWithTag(1002) as! UIImageView
+        let likeButton = cell.viewWithTag(1003) as! UIButton
+        if let likes = tweets[indexPath.row]["favorite_count"].double {
+            if likes >= 1000 {
+                likeButton.setTitle("\(String(format:"%.1f",likes/1000))K", for: .normal)
+            } else {
+                likeButton.setTitle(String(format:"%.0f",likes), for: .normal)
+            }
+        }
+        // TODO: Not in use / sharing anything
+        let commentButton = cell.viewWithTag(1004) as! UIButton
+        // Comment count not in JSON
+//        commentButton.setTitle(tweets[indexPath.row]["favorite_count"].string, for: .normal)
+        let retweetButton = cell.viewWithTag(1005) as! UIButton
+        if let retweets = tweets[indexPath.row]["retweet_count"].double {
+            if retweets >= 1000 {
+                retweetButton.setTitle("\(String(format:"%.1f",retweets/1000))K", for: .normal)
+            } else {
+                retweetButton.setTitle(String(format:"%.0f",retweets), for: .normal)
+            }
+        }
+        // TODO: Not in use / sharing anything
+        let shareButton = cell.viewWithTag(1006) as! UIButton
         
+        // Detect whether a tweet has already been liked
+        if let liked = tweets[indexPath.row]["favorited"].bool {
+            print(liked) // assuming it'd have to be true here, or does it need another if statement?
+            if (liked) {
+                // Fill the heart icon
+            }
+        }
+        
+        let profilepic = cell.viewWithTag(1002) as! UIImageView
         // Convert the profile pic URL into an actual image
         let imageUrlString = tweets[indexPath.row]["user"]["profile_image_url"].string!
         let imageUrl = URL(string: imageUrlString)!

@@ -213,17 +213,22 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" tag="1003" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y8I-kP-DnM">
-                                            <rect key="frame" x="12" y="69" width="21" height="22.5"/>
+                                        <button opaque="NO" tag="1003" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="y8I-kP-DnM">
+                                            <rect key="frame" x="12" y="69" width="65" height="22.5"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="65" id="olg-n6-vzV"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="tintColor" red="1" green="0.43921568630000002" blue="0.36470588240000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                            <state key="normal" image="heart" catalog="system">
+                                            <state key="normal" title="12345" image="heart" catalog="system">
                                                 <color key="titleColor" red="1" green="0.43921568630000002" blue="0.36470588240000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             </state>
                                         </button>
-                                        <button opaque="NO" tag="1004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wEB-lE-RyS">
-                                            <rect key="frame" x="49" y="69" width="21" height="22.5"/>
+                                        <button opaque="NO" tag="1004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="wEB-lE-RyS">
+                                            <rect key="frame" x="93" y="69" width="22.5" height="22.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="tintColor" red="1" green="0.43921568630000002" blue="0.36470588240000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                            <state key="normal" image="arrowshape.turn.up.right" catalog="system">
+                                            <state key="normal" image="bubble.right" catalog="system">
                                                 <color key="titleColor" red="1" green="0.43921568630000002" blue="0.36470588240000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             </state>
                                         </button>
@@ -234,6 +239,24 @@
                                                 <constraint firstAttribute="width" secondItem="EJE-Sv-k2j" secondAttribute="height" multiplier="1:1" id="okL-LJ-HYz"/>
                                             </constraints>
                                         </imageView>
+                                        <button opaque="NO" tag="1005" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="7GC-Od-uke">
+                                            <rect key="frame" x="131.5" y="69" width="65" height="22.5"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="65" id="ps9-Ih-HwC"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="tintColor" red="1" green="0.43921568630000002" blue="0.36470588240000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <state key="normal" title="78910" image="repeat" catalog="system">
+                                                <color key="titleColor" red="1" green="0.43921568630000002" blue="0.36470588240000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            </state>
+                                        </button>
+                                        <button opaque="NO" tag="1006" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="7I8-Nt-r39">
+                                            <rect key="frame" x="212.5" y="69" width="19" height="22.5"/>
+                                            <color key="tintColor" red="1" green="0.43921568630000002" blue="0.36470588240000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <state key="normal" image="square.and.arrow.up" catalog="system">
+                                                <color key="titleColor" red="1" green="0.43921568630000002" blue="0.36470588240000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            </state>
+                                        </button>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="GgE-5C-L1T" firstAttribute="trailing" secondItem="fV1-O2-Gkp" secondAttribute="trailing" id="06D-iM-S4v"/>
@@ -241,15 +264,21 @@
                                         <constraint firstItem="GgE-5C-L1T" firstAttribute="leading" secondItem="wf2-il-ytJ" secondAttribute="leading" constant="12" id="46H-fy-B3G"/>
                                         <constraint firstAttribute="bottom" secondItem="y8I-kP-DnM" secondAttribute="bottom" constant="4" id="5pd-lS-RzT"/>
                                         <constraint firstItem="GgE-5C-L1T" firstAttribute="top" secondItem="fV1-O2-Gkp" secondAttribute="bottom" constant="12" id="8WJ-03-O0f"/>
+                                        <constraint firstItem="7I8-Nt-r39" firstAttribute="leading" secondItem="7GC-Od-uke" secondAttribute="trailing" constant="16" id="KAA-Qk-BXn"/>
+                                        <constraint firstItem="7I8-Nt-r39" firstAttribute="top" secondItem="7GC-Od-uke" secondAttribute="top" id="NRD-3Y-1qr"/>
                                         <constraint firstItem="EJE-Sv-k2j" firstAttribute="leading" secondItem="wf2-il-ytJ" secondAttribute="leading" constant="8" id="Qyo-0i-eWD"/>
-                                        <constraint firstItem="wEB-lE-RyS" firstAttribute="top" secondItem="GgE-5C-L1T" secondAttribute="bottom" constant="6" id="S3c-zu-MVM"/>
+                                        <constraint firstItem="7GC-Od-uke" firstAttribute="bottom" secondItem="wEB-lE-RyS" secondAttribute="bottom" id="Y5c-Dh-HlF"/>
+                                        <constraint firstItem="7I8-Nt-r39" firstAttribute="bottom" secondItem="7GC-Od-uke" secondAttribute="bottom" id="bUZ-8O-h0H"/>
                                         <constraint firstAttribute="trailing" secondItem="fV1-O2-Gkp" secondAttribute="trailing" constant="12" id="bdE-w6-I1K"/>
                                         <constraint firstItem="EJE-Sv-k2j" firstAttribute="top" secondItem="wf2-il-ytJ" secondAttribute="top" constant="4" id="cHb-La-XDT"/>
                                         <constraint firstItem="fV1-O2-Gkp" firstAttribute="leading" secondItem="EJE-Sv-k2j" secondAttribute="trailing" constant="8" id="cg2-yI-xC8"/>
                                         <constraint firstItem="y8I-kP-DnM" firstAttribute="top" secondItem="GgE-5C-L1T" secondAttribute="bottom" constant="6" id="gpl-MD-Qcp"/>
+                                        <constraint firstItem="wEB-lE-RyS" firstAttribute="top" secondItem="y8I-kP-DnM" secondAttribute="top" id="jdQ-wd-OKU"/>
+                                        <constraint firstItem="7GC-Od-uke" firstAttribute="leading" secondItem="wEB-lE-RyS" secondAttribute="trailing" constant="16" id="nI4-rL-bI3"/>
                                         <constraint firstItem="y8I-kP-DnM" firstAttribute="leading" secondItem="wf2-il-ytJ" secondAttribute="leading" constant="12" id="wca-7K-8GL"/>
                                         <constraint firstItem="fV1-O2-Gkp" firstAttribute="top" secondItem="wf2-il-ytJ" secondAttribute="top" constant="12" id="xbS-iW-6dg"/>
                                         <constraint firstItem="wEB-lE-RyS" firstAttribute="bottom" secondItem="y8I-kP-DnM" secondAttribute="bottom" id="xqh-kS-GdP"/>
+                                        <constraint firstItem="7GC-Od-uke" firstAttribute="top" secondItem="wEB-lE-RyS" secondAttribute="top" id="zt2-9H-skz"/>
                                     </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -696,7 +725,7 @@
     <resources>
         <image name="15960367851553229588-16" width="16" height="16"/>
         <image name="MyALLin1-Logo512-v3" width="512" height="512"/>
-        <image name="arrowshape.turn.up.right" catalog="system" width="64" height="52"/>
+        <image name="bubble.right" catalog="system" width="64" height="54"/>
         <image name="cloud.heavyrain" catalog="system" width="64" height="62"/>
         <image name="cloud.heavyrain.fill" catalog="system" width="64" height="62"/>
         <image name="dollarsign.circle" catalog="system" width="64" height="60"/>
@@ -707,6 +736,8 @@
         <image name="map.fill" catalog="system" width="64" height="56"/>
         <image name="person.3" catalog="system" width="72" height="35"/>
         <image name="person.3.fill" catalog="system" width="71" height="34"/>
+        <image name="repeat" catalog="system" width="64" height="48"/>
+        <image name="square.and.arrow.up" catalog="system" width="56" height="64"/>
         <image name="tv" catalog="system" width="64" height="46"/>
         <image name="tv.fill" catalog="system" width="64" height="46"/>
     </resources>
