@@ -8,14 +8,15 @@
 
 import UIKit
 
+
 class DealsCategoryViewController: UIViewController  {
     
     @IBOutlet weak var tableView: UITableView!
     
-    var model = DealCategoryManager.sharedInstance
-    var dealViewController = DealsViewController()
+    var model = DealCategoryManager()
     var currentDealIndex:Int?
-    
+    var dealViewController = DealsViewController()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
@@ -31,10 +32,12 @@ class DealsCategoryViewController: UIViewController  {
             textField.placeholder = "Category"
         }
         let action = UIAlertAction(title: "Add", style: .default) { (_) in
-            let name = alert.textFields?.first!.text!
-            self.model.addDealCategory(name!)
-            self.updateUI()
-            self.dealViewController.getAllDealCategoryItems()
+            if alert.textFields?.first!.text! != "" {
+                let name = alert.textFields?.first!.text!
+                self.model.addDealCategory(name!)
+                self.updateUI()
+                self.dealViewController.getAllDealCategoryItems()
+            }
         }
         alert.addAction(action)
         present(alert, animated: true, completion: nil)
@@ -49,16 +52,12 @@ extension DealsCategoryViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCell(withIdentifier: "categoryCell", for: indexPath) as UITableViewCell
-        
         //Variables for each element in the current cell
         let name = cell.viewWithTag(1001) as! UILabel
-        
         //Get current deal name
         let categoryDetails = model.getCategoryName(index: indexPath.row)
-        
         //Set all elements in the current cell to the vendor data
         name.text = categoryDetails
-        
         //Return cell to the view
         return cell
     }
@@ -66,8 +65,8 @@ extension DealsCategoryViewController: UITableViewDataSource {
     //Allow user to delete categories
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            model.deleteDealCategory(dealCategory: model.getCategory(index: indexPath.row))
-            updateUI()
+            self.model.deleteDealCategory(dealCategory: model.getCategory(index: indexPath.row))
+            self.updateUI()
             self.dealViewController.getAllDealCategoryItems()
         }
     }

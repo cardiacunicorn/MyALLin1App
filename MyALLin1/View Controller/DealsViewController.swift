@@ -14,7 +14,7 @@ class DealsViewController: UIViewController, UICollectionViewDataSource, UIColle
     
     var model = DealCategoryManager()
     var rest = DealAPIRequest.shared
-    
+
     // Stores the deal items to be displayed
     var dealList:[DealItem] {
         get { return rest.dealList}
@@ -34,27 +34,25 @@ class DealsViewController: UIViewController, UICollectionViewDataSource, UIColle
         
         rest.delegate = self
         collectionView.dataSource = self
+        collectionView.delegate = self
         
         getAllDealCategoryItems()
     }
     
     func updateUI() {
         self.collectionView.reloadData()
-        print("Updating collection UI")
     }
     
     // Open the URL for the item when selected
+    // NOTE: eBay redirect to their mobile sandbox site using https, which returns a broken link for all items unfortunately - unable to workaround this
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        //TODO: Need to fix issue with simulator automatically redirecting to HTTPS instead of HTTP. Issue lies with simulator Safari, not the app.
         if let url = URL(string: dealList[indexPath.item].itemUrl){
             UIApplication.shared.open(url)
-            print("Opening " + dealList[indexPath.item].itemUrl)
         }
     }
     
     // Set the size of the collection to equal the amount of deals items in the array
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print("Total deals in array: " + String(dealList.count))
         return dealList.count
     }
     
@@ -93,12 +91,14 @@ class DealsViewController: UIViewController, UICollectionViewDataSource, UIColle
     
     // Clear all deal items, then get a new list of deal items.
     func getAllDealCategoryItems() {
-        print("Getting all deal items")
-        model.fetchDealCategorys()
         dealList = []
+        model.fetchDealCategorys()
         for deal in model.getCategoryList() {
             let categoryName = deal.name!
             rest.getCategoryItems(searchTerm: categoryName)
+        }
+        if model.getCategoryCount() == 0 {
+            rest.queueUpdate()
         }
     }
 }

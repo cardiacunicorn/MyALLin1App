@@ -19,9 +19,10 @@ class DealAPIRequest {
     private let client_secret = "SBX-7aad0465b9d4-949d-4bcf-9922-e0dc"
     private var access_token = ""
     
-    private let model = DealCategoryManager.sharedInstance
+    private let model = DealCategoryManager()
     private let session = URLSession.shared
     var task:URLSessionTask?
+    
     var delegate:RefreshDeals?
     static let shared = DealAPIRequest()
     
@@ -48,16 +49,13 @@ class DealAPIRequest {
         }
     }
 
-    // Get access token data required for all api calls
+    // If no access token stored, get a new one
     func getBearerTokenData(_ request: URLRequest) {
         var result = [String:Any]()
-        
-        
         if access_token == "" {
             let semaphore = DispatchSemaphore(value: 0)
             task = session.dataTask(with: request, completionHandler: {
                 data, response, downloadError in
-                
                 if let error = downloadError {
                     print(error)
                 }
@@ -72,7 +70,6 @@ class DealAPIRequest {
                     result = parsedResult as! [String:Any]
                     if result.count > 0 {
                         self.access_token = result["access_token"] as! String
-                        print("eBay access token retrieved and stored.")
                       }
                     semaphore.signal()
                 }
@@ -97,7 +94,6 @@ class DealAPIRequest {
             request.addValue(eBayMarketplaceId, forHTTPHeaderField: "X-EBAY-C-MARKETPLACE-ID")
             request.httpMethod = "GET"
             getCategoryItemsData(request, searchTerm: searchTerm)
-            print("Searching eBay for " + searchTerm)
         }
     }
     
@@ -136,18 +132,20 @@ class DealAPIRequest {
                         let dealItem = DealItem(category: category, title: title, value: value, currency: currency, itemUrl: itemUrl, imageUrl:imageUrl)
                         
                         self.dealList.append(dealItem)
-                        print("Adding " + title)
                     }
                 }
                 else {
                     print("No items found for " + searchTerm)
                 }
-                
-                DispatchQueue.main.async {
-                    self.delegate?.updateUI()
-                }
             }
+            self.queueUpdate()
         })
         task!.resume()
+    }
+    
+    func queueUpdate(){
+        DispatchQueue.main.async {
+            self.delegate?.updateUI()
+        }
     }
 }

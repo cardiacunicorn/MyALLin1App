@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>LSApplicationCategoryType</key>
-	<string></string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>This app requires your location.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
@@ -98,8 +96,12 @@
 	<dict>
 		<key>NSExceptionDomains</key>
 		<dict>
-			<key>ebay.com.au</key>
+			<key>sandbox.ebay.com.au</key>
 			<dict>
+				<key>NSTemporaryExceptionMinimumTLSVersion</key>
+				<string>TLSv1.1</string>
+				<key>NSRequiresCertificateTransparency</key>
+				<false/>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>
 				<true/>
 				<key>NSIncludesSubdomains</key>
