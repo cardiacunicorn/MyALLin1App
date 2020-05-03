@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3EC7300BF5B13A4AD272EE90 /* Pods_MyALLin1_MyALLin1UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C0FF2AC2EF57E110FFBAEB7 /* Pods_MyALLin1_MyALLin1UITests.framework */; };
+		4002B527245CBDE500CF06C3 /* QueriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4002B526245CBDE500CF06C3 /* QueriesViewController.swift */; };
 		402E9E512439148B00BB296F /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402E9E502439148B00BB296F /* WeatherViewController.swift */; };
 		402E9E53243914D300BB296F /* WeatherAPIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402E9E52243914D300BB296F /* WeatherAPIRequest.swift */; };
 		402E9E55243914FD00BB296F /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402E9E54243914FD00BB296F /* Weather.swift */; };
@@ -55,6 +56,7 @@
 
 /* Begin PBXFileReference section */
 		09C0A72F0157CFA3194D4937 /* Pods-MyALLin1-MyALLin1UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyALLin1-MyALLin1UITests.debug.xcconfig"; path = "Target Support Files/Pods-MyALLin1-MyALLin1UITests/Pods-MyALLin1-MyALLin1UITests.debug.xcconfig"; sourceTree = "<group>"; };
+		4002B526245CBDE500CF06C3 /* QueriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueriesViewController.swift; sourceTree = "<group>"; };
 		402E9E502439148B00BB296F /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
 		402E9E52243914D300BB296F /* WeatherAPIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAPIRequest.swift; sourceTree = "<group>"; };
 		402E9E54243914FD00BB296F /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
@@ -245,6 +247,7 @@
 				407E1DE5243F899400F9CA91 /* CitySearchViewController.swift */,
 				40745B9724508CFC00B968EE /* NewsViewController.swift */,
 				40745B992454DF4100B968EE /* NewsDetailViewController.swift */,
+				4002B526245CBDE500CF06C3 /* QueriesViewController.swift */,
 			);
 			path = "View Controller";
 			sourceTree = "<group>";
@@ -501,6 +504,7 @@
 				FA603B942427056E007B47E7 /* LoginViewController.swift in Sources */,
 				FA603B902427056E007B47E7 /* AppDelegate.swift in Sources */,
 				407E1DE8243FB0E800F9CA91 /* City.swift in Sources */,
+				4002B527245CBDE500CF06C3 /* QueriesViewController.swift in Sources */,
 				40745B9824508CFC00B968EE /* NewsViewController.swift in Sources */,
 				407E1DEF2441086A00F9CA91 /* SavedLocation+CoreDataClass.swift in Sources */,
 				407E1DE6243F899400F9CA91 /* CitySearchViewController.swift in Sources */,
@@ -680,8 +684,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = FPX4YC3HKX;
 				INFOPLIST_FILE = MyALLin1/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -699,8 +704,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = FPX4YC3HKX;
 				INFOPLIST_FILE = MyALLin1/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

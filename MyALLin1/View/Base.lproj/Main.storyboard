@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hCq-Gj-SQw">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hCq-Gj-SQw">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -372,6 +372,51 @@
             </objects>
             <point key="canvasLocation" x="963.75" y="1247.5352112676057"/>
         </scene>
+        <!--Submit Query-->
+        <scene sceneID="ja0-ul-zP2">
+            <objects>
+                <viewController id="AjQ-8J-PkJ" customClass="QueriesViewController" customModule="MyALLin1" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="kn8-PN-JyW">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lqG-K1-ShQ">
+                                <rect key="frame" x="16" y="197" width="288" height="23"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pkg-hN-eRx">
+                                <rect key="frame" x="133" y="267" width="54" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="retryButton:" destination="AjQ-8J-PkJ" eventType="touchUpInside" id="nya-x7-TFG"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="lqG-K1-ShQ" firstAttribute="centerX" secondItem="kn8-PN-JyW" secondAttribute="centerX" id="6x0-Ck-F5V"/>
+                            <constraint firstItem="ROL-qh-vUP" firstAttribute="trailing" secondItem="lqG-K1-ShQ" secondAttribute="trailing" constant="16" id="HI2-0m-JH2"/>
+                            <constraint firstItem="ROL-qh-vUP" firstAttribute="bottom" secondItem="pkg-hN-eRx" secondAttribute="bottom" constant="218" id="MdZ-79-fB8"/>
+                            <constraint firstItem="pkg-hN-eRx" firstAttribute="centerX" secondItem="kn8-PN-JyW" secondAttribute="centerX" id="TGl-0z-FW4"/>
+                            <constraint firstItem="lqG-K1-ShQ" firstAttribute="top" secondItem="ROL-qh-vUP" secondAttribute="top" constant="197" id="ijE-dH-L0d"/>
+                            <constraint firstItem="lqG-K1-ShQ" firstAttribute="leading" secondItem="ROL-qh-vUP" secondAttribute="leading" constant="16" id="jUw-nx-MCC"/>
+                            <constraint firstItem="pkg-hN-eRx" firstAttribute="top" secondItem="lqG-K1-ShQ" secondAttribute="bottom" constant="47" id="q7K-3h-kvq"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ROL-qh-vUP"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Submit Query" id="OcZ-mc-amD"/>
+                    <connections>
+                        <outlet property="message" destination="lqG-K1-ShQ" id="r8a-wN-Io4"/>
+                        <outlet property="retryButton" destination="pkg-hN-eRx" id="gx9-38-gPG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PGe-Vp-DJc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2165.625" y="921.12676056338034"/>
+        </scene>
         <!--City Search View Controller-->
         <scene sceneID="kKU-L4-JWz">
             <objects>
@@ -385,14 +430,14 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchResultCell" id="uck-ce-G2X">
-                                        <rect key="frame" x="0.0" y="28" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="320" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="uck-ce-G2X" id="Mh8-8o-zqN">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="1000" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QE0-Wt-FY7">
-                                                    <rect key="frame" x="22" y="11" width="42" height="21.5"/>
+                                                    <rect key="frame" x="22" y="11" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -594,6 +639,7 @@
                         <segue destination="74q-4C-Jcu" kind="relationship" relationship="viewControllers" id="oP2-qJ-q5S"/>
                         <segue destination="tbZ-Ys-za0" kind="relationship" relationship="viewControllers" id="RuD-p0-gki"/>
                         <segue destination="LWQ-aU-KAR" kind="relationship" relationship="viewControllers" id="J4m-f1-lmn"/>
+                        <segue destination="AjQ-8J-PkJ" kind="relationship" relationship="viewControllers" id="qKf-YG-NQY"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aWr-Gw-60G" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -604,16 +650,16 @@
     <resources>
         <image name="15960367851553229588-16" width="16" height="16"/>
         <image name="MyALLin1-Logo512-v3" width="512" height="512"/>
-        <image name="cloud.heavyrain" catalog="system" width="64" height="62"/>
-        <image name="cloud.heavyrain.fill" catalog="system" width="64" height="62"/>
-        <image name="dollarsign.circle" catalog="system" width="64" height="60"/>
-        <image name="dollarsign.circle.fill" catalog="system" width="64" height="60"/>
-        <image name="gear" catalog="system" width="64" height="58"/>
-        <image name="map" catalog="system" width="64" height="56"/>
-        <image name="map.fill" catalog="system" width="64" height="56"/>
-        <image name="person.3" catalog="system" width="72" height="35"/>
-        <image name="person.3.fill" catalog="system" width="71" height="34"/>
-        <image name="tv" catalog="system" width="64" height="46"/>
-        <image name="tv.fill" catalog="system" width="64" height="46"/>
+        <image name="cloud.heavyrain" catalog="system" width="128" height="125"/>
+        <image name="cloud.heavyrain.fill" catalog="system" width="128" height="125"/>
+        <image name="dollarsign.circle" catalog="system" width="128" height="121"/>
+        <image name="dollarsign.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="gear" catalog="system" width="128" height="119"/>
+        <image name="map" catalog="system" width="128" height="113"/>
+        <image name="map.fill" catalog="system" width="128" height="113"/>
+        <image name="person.3" catalog="system" width="128" height="62"/>
+        <image name="person.3.fill" catalog="system" width="128" height="61"/>
+        <image name="tv" catalog="system" width="128" height="93"/>
+        <image name="tv.fill" catalog="system" width="128" height="93"/>
     </resources>
 </document>
