@@ -34,7 +34,7 @@ class DevInfoViewController: UIViewController, UITableViewDataSource {
         super.viewDidLoad()
         notesTableView.dataSource = self
         
-        let notes = ["NOTES", "NOTES", "NOTES", "NOTES"]
+        let notes = ["User can sign-in to their Twitter account and view their timeline", "User can view nearby cafes on a map", "User can view weather information for current location and saved locations", "User can view eBay deals for selected search terms", "User can view latest news for selected categories", "User can view development information for latest release", "User can submit queries"]
         
         currentVersion = ReleaseNotes(version: 1.0, notes: notes)
         
