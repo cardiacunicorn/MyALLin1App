@@ -407,7 +407,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ROL-qh-vUP"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Submit Query" id="OcZ-mc-amD"/>
+                    <tabBarItem key="tabBarItem" title="Submit Query" image="square.and.pencil" catalog="system" selectedImage="square.and.pencil" id="OcZ-mc-amD"/>
                     <connections>
                         <outlet property="message" destination="lqG-K1-ShQ" id="r8a-wN-Io4"/>
                         <outlet property="retryButton" destination="pkg-hN-eRx" id="gx9-38-gPG"/>
@@ -430,14 +430,14 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchResultCell" id="uck-ce-G2X">
-                                        <rect key="frame" x="0.0" y="28" width="320" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="uck-ce-G2X" id="Mh8-8o-zqN">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="1000" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QE0-Wt-FY7">
-                                                    <rect key="frame" x="22" y="11" width="42" height="21"/>
+                                                    <rect key="frame" x="22" y="11" width="42" height="21.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -659,6 +659,7 @@
         <image name="map.fill" catalog="system" width="128" height="113"/>
         <image name="person.3" catalog="system" width="128" height="62"/>
         <image name="person.3.fill" catalog="system" width="128" height="61"/>
+        <image name="square.and.pencil" catalog="system" width="128" height="118"/>
         <image name="tv" catalog="system" width="128" height="93"/>
         <image name="tv.fill" catalog="system" width="128" height="93"/>
     </resources>
