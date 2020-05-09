@@ -44,12 +44,12 @@ class DealsViewController: UIViewController, UICollectionViewDataSource, UIColle
     }
     
     // Open the URL for the item when selected
-    // NOTE: eBay redirect to their mobile sandbox site using https, which returns a broken link for all items unfortunately - unable to workaround this
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let url = URL(string: dealList[indexPath.item].itemUrl){
-            UIApplication.shared.open(url)
-        }
-    }
+    // Function removed for now as it results in broken link due to server side issues with eBays sandbox API
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        if let url = URL(string: dealList[indexPath.item].itemUrl){
+//            UIApplication.shared.open(url)
+//        }
+//    }
     
     // Set the size of the collection to equal the amount of deals items in the array
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
