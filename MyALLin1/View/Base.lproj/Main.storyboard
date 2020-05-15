@@ -177,10 +177,10 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Tweet" id="Lyn-qw-awP" customClass="TweetCell" customModule="MyALLin1" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="320" height="95.5"/>
+                                <rect key="frame" x="0.0" y="28" width="320" height="93"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Lyn-qw-awP" id="wf2-il-ytJ">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="95.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="93"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="1001" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tweeter's Name" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fV1-O2-Gkp">
@@ -196,7 +196,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" tag="1003" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="y8I-kP-DnM">
-                                            <rect key="frame" x="12" y="69" width="65" height="22.5"/>
+                                            <rect key="frame" x="12" y="69" width="65" height="20"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="65" id="olg-n6-vzV"/>
                                             </constraints>
@@ -210,7 +210,7 @@
                                             </connections>
                                         </button>
                                         <button opaque="NO" tag="1004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="wEB-lE-RyS">
-                                            <rect key="frame" x="93" y="69" width="22.5" height="22.5"/>
+                                            <rect key="frame" x="93" y="69" width="22.5" height="20"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="tintColor" red="1" green="0.43921568630000002" blue="0.36470588240000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <state key="normal" image="bubble.right" catalog="system">
@@ -229,7 +229,7 @@
                                             </constraints>
                                         </imageView>
                                         <button opaque="NO" tag="1005" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="7GC-Od-uke">
-                                            <rect key="frame" x="131.5" y="69" width="65" height="22.5"/>
+                                            <rect key="frame" x="131.5" y="69" width="65" height="20"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="65" id="ps9-Ih-HwC"/>
                                             </constraints>
@@ -242,16 +242,6 @@
                                                 <action selector="tappedRetweet:" destination="Lyn-qw-awP" eventType="touchUpInside" id="Cdq-cN-8Er"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" tag="1006" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="7I8-Nt-r39">
-                                            <rect key="frame" x="212.5" y="69" width="19" height="22.5"/>
-                                            <color key="tintColor" red="1" green="0.43921568630000002" blue="0.36470588240000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                            <state key="normal" image="square.and.arrow.up" catalog="system">
-                                                <color key="titleColor" red="1" green="0.43921568630000002" blue="0.36470588240000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                            </state>
-                                            <connections>
-                                                <action selector="tappedShare:" destination="Lyn-qw-awP" eventType="touchUpInside" id="hb3-As-hgB"/>
-                                            </connections>
-                                        </button>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="GgE-5C-L1T" firstAttribute="trailing" secondItem="fV1-O2-Gkp" secondAttribute="trailing" id="06D-iM-S4v"/>
@@ -259,11 +249,8 @@
                                         <constraint firstItem="GgE-5C-L1T" firstAttribute="leading" secondItem="wf2-il-ytJ" secondAttribute="leading" constant="12" id="46H-fy-B3G"/>
                                         <constraint firstAttribute="bottom" secondItem="y8I-kP-DnM" secondAttribute="bottom" constant="4" id="5pd-lS-RzT"/>
                                         <constraint firstItem="GgE-5C-L1T" firstAttribute="top" secondItem="fV1-O2-Gkp" secondAttribute="bottom" constant="12" id="8WJ-03-O0f"/>
-                                        <constraint firstItem="7I8-Nt-r39" firstAttribute="leading" secondItem="7GC-Od-uke" secondAttribute="trailing" constant="16" id="KAA-Qk-BXn"/>
-                                        <constraint firstItem="7I8-Nt-r39" firstAttribute="top" secondItem="7GC-Od-uke" secondAttribute="top" id="NRD-3Y-1qr"/>
                                         <constraint firstItem="EJE-Sv-k2j" firstAttribute="leading" secondItem="wf2-il-ytJ" secondAttribute="leading" constant="8" id="Qyo-0i-eWD"/>
                                         <constraint firstItem="7GC-Od-uke" firstAttribute="bottom" secondItem="wEB-lE-RyS" secondAttribute="bottom" id="Y5c-Dh-HlF"/>
-                                        <constraint firstItem="7I8-Nt-r39" firstAttribute="bottom" secondItem="7GC-Od-uke" secondAttribute="bottom" id="bUZ-8O-h0H"/>
                                         <constraint firstAttribute="trailing" secondItem="fV1-O2-Gkp" secondAttribute="trailing" constant="12" id="bdE-w6-I1K"/>
                                         <constraint firstItem="EJE-Sv-k2j" firstAttribute="top" secondItem="wf2-il-ytJ" secondAttribute="top" constant="4" id="cHb-La-XDT"/>
                                         <constraint firstItem="fV1-O2-Gkp" firstAttribute="leading" secondItem="EJE-Sv-k2j" secondAttribute="trailing" constant="8" id="cg2-yI-xC8"/>
@@ -287,6 +274,9 @@
                         <barButtonItem key="backBarButtonItem" title="Feed" id="3PZ-c3-JWE"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="compose" id="of6-If-fmy">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="composeButton:" destination="S9a-7X-LIH" id="x8m-eQ-PZR"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                 </tableViewController>
@@ -473,14 +463,14 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchResultCell" id="uck-ce-G2X">
-                                        <rect key="frame" x="0.0" y="28" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="320" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="uck-ce-G2X" id="Mh8-8o-zqN">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="1000" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QE0-Wt-FY7">
-                                                    <rect key="frame" x="22" y="11" width="42" height="21.5"/>
+                                                    <rect key="frame" x="22" y="11" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -733,7 +723,6 @@
         <image name="person.3.fill" catalog="system" width="71" height="34"/>
         <image name="person.fill" catalog="system" width="64" height="60"/>
         <image name="repeat" catalog="system" width="64" height="48"/>
-        <image name="square.and.arrow.up" catalog="system" width="56" height="64"/>
         <image name="tv" catalog="system" width="64" height="46"/>
         <image name="tv.fill" catalog="system" width="64" height="46"/>
     </resources>

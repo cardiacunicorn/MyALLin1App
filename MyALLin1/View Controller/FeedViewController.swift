@@ -15,9 +15,12 @@ class FeedViewController: UITableViewController {
     var tweets:[JSON] = []
     var swifter = Swifter(consumerKey: "0bxAILPpJ4gORixVzWJfahjRV", consumerSecret: "zaDny7HAqqirRrFvrQ6SBq0s9eCuYTBAcBRKrMjqR2UmNXEz5G")
     
+    @IBAction func composeButton(_ sender: Any) {
+        composeTweet()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(tweets[0])
     }
 
     // MARK: - Table view data source
@@ -29,10 +32,6 @@ class FeedViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tweets.count
     }
-    
-    func likeButtonTapped(_ likeButton: UIButton) {
-        print("Like button tapped")
-    }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Tweet", for: indexPath) as! TweetCell
@@ -42,13 +41,23 @@ class FeedViewController: UITableViewController {
             let likeButton = cell.viewWithTag(1003) as? UIButton,
             let commentButton = cell.viewWithTag(1004) as? UIButton,
             let retweetButton = cell.viewWithTag(1005) as? UIButton,
-            let shareButton = cell.viewWithTag(1006) as? UIButton,
+            let profilepic = cell.viewWithTag(1002) as? UIImageView,
             let tweetID = tweets[indexPath.row]["id_str"].string
         {
             
-            // MARK: Tweet content
+            // MARK: Tweet Content
             tweetText.text = tweets[indexPath.row]["text"].string
             username.text = "@\(tweets[indexPath.row]["user"]["screen_name"].string!)"
+            
+            // MARK: Tweeter's Image
+            // Convert the profile pic URL into an actual image
+            let imageUrlString = tweets[indexPath.row]["user"]["profile_image_url"].string!
+            let imageUrl = URL(string: imageUrlString)!
+            let imageData = try! Data(contentsOf: imageUrl)
+            profilepic.image = UIImage(data: imageData)
+            // Apply a circular mask to profile image
+            profilepic.layer.cornerRadius = profilepic.frame.size.width/2
+            profilepic.clipsToBounds = true
             
             // MARK: - Buttons
             // MARK: Like Button
@@ -94,10 +103,11 @@ class FeedViewController: UITableViewController {
                 }
             }
             
-            // MARK: Comment Button
+            // MARK: Comment/Reply Button
             cell.commentAction = {
                 (cell) in
-                print("Pressed comment on Tweet ID: \(String(describing: self.tweets[tableView.indexPath(for: cell)!.row]["id_str"].string))")
+                // Will compose a tweet in reply to this tweet
+                self.composeTweet(tweetID)
             }
             
             // MARK: Retweet Button
@@ -120,24 +130,7 @@ class FeedViewController: UITableViewController {
                     }
                 }
             }
-            
-            // MARK: Share Button
-            cell.shareAction = {
-                (cell) in
-                print("Pressed share on Tweet ID: \(String(describing: self.tweets[tableView.indexPath(for: cell)!.row]["id_str"].string))")
-            }
         }
-        
-        // MARK: Tweeter's Image
-        let profilepic = cell.viewWithTag(1002) as! UIImageView
-        // Convert the profile pic URL into an actual image
-        let imageUrlString = tweets[indexPath.row]["user"]["profile_image_url"].string!
-        let imageUrl = URL(string: imageUrlString)!
-        let imageData = try! Data(contentsOf: imageUrl)
-        profilepic.image = UIImage(data: imageData)
-        // Apply a circular mask to profile image
-        profilepic.layer.cornerRadius = profilepic.frame.size.width/2
-        profilepic.clipsToBounds = true
         
         return cell
     }
@@ -149,6 +142,28 @@ class FeedViewController: UITableViewController {
         let url = URL(string: "https://twitter.com/\(username)/status/\(tweetID)")!
         let safariView = SFSafariViewController(url: url)
         self.present(safariView, animated: true, completion: nil)
+    }
+    
+    func composeTweet(_ tweetID: String = "None") {
+        let alertController = UIAlertController(title: "Compose Tweet", message: "Tweets longer than 280 characters will not publish", preferredStyle: .alert)
+        let confirm = UIAlertAction(title: "Tweet", style: .default) { (_) in
+            if let tweetText = alertController.textFields?[0].text {
+                // Check if the composed tweet is in reply to another tweet
+                if (tweetID == "None") {
+                    self.swifter.postTweet(status: tweetText)
+                } else {
+                    self.swifter.postTweet(status: tweetText, inReplyToStatusID: tweetID)
+                }
+            }
+        }
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: { (_) in })
+        alertController.addAction(confirm)
+        alertController.addAction(cancel)
+        alertController.addTextField { (textField) in
+            textField.placeholder = "... enter your tweet"
+        }
+        
+        self.present(alertController, animated: true, completion: nil)
     }
 
     /*
