@@ -37,18 +37,23 @@ class FeedViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Tweet", for: indexPath) as! TweetCell
         
-        let tweetID = tweets[indexPath.row]["id_str"].string!
-        
-        // MARK: Tweet content
-        let tweetText = cell.viewWithTag(1000) as! UILabel
-        tweetText.text = tweets[indexPath.row]["text"].string
-        let username = cell.viewWithTag(1001) as! UILabel
-        username.text = "@\(tweets[indexPath.row]["user"]["screen_name"].string!)"
-        
-        // MARK: Buttons & Metric Counts
-        if let likeButton = cell.viewWithTag(1003) as? UIButton {
+        if  let tweetText = cell.viewWithTag(1000) as? UILabel,
+            let username = cell.viewWithTag(1001) as? UILabel,
+            let likeButton = cell.viewWithTag(1003) as? UIButton,
+            let commentButton = cell.viewWithTag(1004) as? UIButton,
+            let retweetButton = cell.viewWithTag(1005) as? UIButton,
+            let shareButton = cell.viewWithTag(1006) as? UIButton,
+            let tweetID = tweets[indexPath.row]["id_str"].string
+        {
             
+            // MARK: Tweet content
+            tweetText.text = tweets[indexPath.row]["text"].string
+            username.text = "@\(tweets[indexPath.row]["user"]["screen_name"].string!)"
+            
+            // MARK: - Buttons
+            // MARK: Like Button
             if var likes = tweets[indexPath.row]["favorite_count"].double {
+                
                 if likes >= 1000 {
                     likeButton.setTitle("\(String(format:"%.1f",likes/1000))K", for: .normal)
                 } else {
@@ -62,6 +67,7 @@ class FeedViewController: UITableViewController {
                         likeButton.setImage(UIImage(systemName: "heart.fill")?.withTintColor(UIColor.red), for: .normal)
                     }
                     
+                    // MARK: Like Button: Functionality Closure
                     cell.likeAction = {
                         (cell) in
                         if liked == true {
@@ -87,22 +93,39 @@ class FeedViewController: UITableViewController {
                     
                 }
             }
-        }
-        if let commentButton = cell.viewWithTag(1004) as? UIButton {
-            commentButton.tag = indexPath.row
-        }
-        if let retweetButton = cell.viewWithTag(1005) as? UIButton {
-            retweetButton.tag = indexPath.row
-            if let retweets = tweets[indexPath.row]["retweet_count"].double {
+            
+            // MARK: Comment Button
+            cell.commentAction = {
+                (cell) in
+                print("Pressed comment on Tweet ID: \(String(describing: self.tweets[tableView.indexPath(for: cell)!.row]["id_str"].string))")
+            }
+            
+            // MARK: Retweet Button
+            if var retweets = tweets[indexPath.row]["retweet_count"].double {
+                
                 if retweets >= 1000 {
                     retweetButton.setTitle("\(String(format:"%.1f",retweets/1000))K", for: .normal)
                 } else {
                     retweetButton.setTitle(String(format:"%.0f",retweets), for: .normal)
                 }
+                
+                // MARK: Retweet Button: Functionality Closure
+                cell.retweetAction = {
+                    (cell) in
+                    // Auto retweet
+                    self.swifter.retweetTweet(forID: tweetID)
+                    retweets += 1
+                    if retweets < 1001 {
+                        retweetButton.setTitle(String(format:"%.0f",retweets), for: .normal)
+                    }
+                }
             }
-        }
-        if let shareButton = cell.viewWithTag(1006) as? UIButton {
-            shareButton.tag = indexPath.row
+            
+            // MARK: Share Button
+            cell.shareAction = {
+                (cell) in
+                print("Pressed share on Tweet ID: \(String(describing: self.tweets[tableView.indexPath(for: cell)!.row]["id_str"].string))")
+            }
         }
         
         // MARK: Tweeter's Image
@@ -115,32 +138,6 @@ class FeedViewController: UITableViewController {
         // Apply a circular mask to profile image
         profilepic.layer.cornerRadius = profilepic.frame.size.width/2
         profilepic.clipsToBounds = true
-        
-        // MARK: Button Functionality
-        // Closures for each button action, executed by the button when pressed
-//        cell.likeAction = {
-//            (cell) in
-//            if self.tweets[indexPath.row]["favorited"].bool == true {
-//                self.swifter.unfavoriteTweet(forID: self.tweets[tableView.indexPath(for: cell)!.row]["id_str"].string!)
-//                print("Unliked Tweet with ID: \(String(describing: self.tweets[tableView.indexPath(for: cell)!.row]["id_str"].string))")
-//            } else if self.tweets[indexPath.row]["favorited"].bool == false {
-//                self.swifter.favoriteTweet(forID: self.tweets[tableView.indexPath(for: cell)!.row]["id_str"].string!)
-//                // Fill the heart icon
-//                likeButton.setImage(UIImage(systemName: "heart.fill")?.withTintColor(UIColor.red), for: .normal)
-//            }
-//        }
-        cell.commentAction = {
-            (cell) in
-            print("Pressed comment on Tweet ID: \(String(describing: self.tweets[tableView.indexPath(for: cell)!.row]["id_str"].string))")
-        }
-        cell.retweetAction = {
-            (cell) in
-            print("Pressed retweet on Tweet ID: \(String(describing: self.tweets[tableView.indexPath(for: cell)!.row]["id_str"].string))")
-        }
-        cell.shareAction = {
-            (cell) in
-            print("Pressed share on Tweet ID: \(String(describing: self.tweets[tableView.indexPath(for: cell)!.row]["id_str"].string))")
-        }
         
         return cell
     }
