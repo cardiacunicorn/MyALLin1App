@@ -37,6 +37,8 @@ class FeedViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Tweet", for: indexPath) as! TweetCell
         
+        let tweetID = tweets[indexPath.row]["id_str"].string!
+        
         // MARK: Tweet content
         let tweetText = cell.viewWithTag(1000) as! UILabel
         tweetText.text = tweets[indexPath.row]["text"].string
@@ -46,20 +48,43 @@ class FeedViewController: UITableViewController {
         // MARK: Buttons & Metric Counts
         if let likeButton = cell.viewWithTag(1003) as? UIButton {
             
-            if let likes = tweets[indexPath.row]["favorite_count"].double {
+            if var likes = tweets[indexPath.row]["favorite_count"].double {
                 if likes >= 1000 {
                     likeButton.setTitle("\(String(format:"%.1f",likes/1000))K", for: .normal)
                 } else {
                     likeButton.setTitle(String(format:"%.0f",likes), for: .normal)
                 }
-            }
-            
-            // Detect whether a tweet has already been liked
-            if let liked = tweets[indexPath.row]["favorited"].bool {
-                print(liked) // assuming it'd have to be true here, or does it need another if statement?
-                if (liked) {
-                    // Fill the heart icon
-                    likeButton.setImage(UIImage(named: "heart.fill")?.withTintColor(UIColor.red), for: .normal)
+                
+                // Detect whether a tweet has already been liked
+                if var liked = tweets[indexPath.row]["favorited"].bool {
+                    if (liked) {
+                        // Fill the heart icon
+                        likeButton.setImage(UIImage(systemName: "heart.fill")?.withTintColor(UIColor.red), for: .normal)
+                    }
+                    
+                    cell.likeAction = {
+                        (cell) in
+                        if liked == true {
+                            self.swifter.unfavoriteTweet(forID: tweetID)
+                            // Empty the heart icon
+                            likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
+                            liked = false
+                            likes -= 1
+                            if likes < 1000 {
+                                likeButton.setTitle(String(format:"%.0f",likes), for: .normal)
+                            }
+                        } else if liked == false {
+                            self.swifter.favoriteTweet(forID: tweetID)
+                            // Fill the heart icon
+                            likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+                            liked = true
+                            likes += 1
+                            if likes < 1001 {
+                                likeButton.setTitle(String(format:"%.0f",likes), for: .normal)
+                            }
+                        }
+                    }
+                    
                 }
             }
         }
@@ -93,21 +118,28 @@ class FeedViewController: UITableViewController {
         
         // MARK: Button Functionality
         // Closures for each button action, executed by the button when pressed
-        cell.likeAction = {
-            (cell) in
-            print("Pressed like on Tweet ID: \(self.tweets[tableView.indexPath(for: cell)!.row]["id_str"].string)")
-        }
+//        cell.likeAction = {
+//            (cell) in
+//            if self.tweets[indexPath.row]["favorited"].bool == true {
+//                self.swifter.unfavoriteTweet(forID: self.tweets[tableView.indexPath(for: cell)!.row]["id_str"].string!)
+//                print("Unliked Tweet with ID: \(String(describing: self.tweets[tableView.indexPath(for: cell)!.row]["id_str"].string))")
+//            } else if self.tweets[indexPath.row]["favorited"].bool == false {
+//                self.swifter.favoriteTweet(forID: self.tweets[tableView.indexPath(for: cell)!.row]["id_str"].string!)
+//                // Fill the heart icon
+//                likeButton.setImage(UIImage(systemName: "heart.fill")?.withTintColor(UIColor.red), for: .normal)
+//            }
+//        }
         cell.commentAction = {
             (cell) in
-            print("Pressed comment on Tweet ID: \(self.tweets[tableView.indexPath(for: cell)!.row]["id_str"].string)")
+            print("Pressed comment on Tweet ID: \(String(describing: self.tweets[tableView.indexPath(for: cell)!.row]["id_str"].string))")
         }
         cell.retweetAction = {
             (cell) in
-            print("Pressed retweet on Tweet ID: \(self.tweets[tableView.indexPath(for: cell)!.row]["id_str"].string)")
+            print("Pressed retweet on Tweet ID: \(String(describing: self.tweets[tableView.indexPath(for: cell)!.row]["id_str"].string))")
         }
         cell.shareAction = {
             (cell) in
-            print("Pressed share on Tweet ID: \(self.tweets[tableView.indexPath(for: cell)!.row]["id_str"].string)")
+            print("Pressed share on Tweet ID: \(String(describing: self.tweets[tableView.indexPath(for: cell)!.row]["id_str"].string))")
         }
         
         return cell
