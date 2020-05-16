@@ -14,7 +14,7 @@ class SavedLocationManager {
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
-    let managedContext: NSManagedObjectContext
+    var managedContext: NSManagedObjectContext
     
     func fetchSavedLocations() -> [SavedLocation] {
         
