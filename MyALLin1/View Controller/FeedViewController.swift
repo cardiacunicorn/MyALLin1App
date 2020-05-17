@@ -39,7 +39,6 @@ class FeedViewController: UITableViewController {
         if  let tweetText = cell.viewWithTag(1000) as? UILabel,
             let username = cell.viewWithTag(1001) as? UILabel,
             let likeButton = cell.viewWithTag(1003) as? UIButton,
-            let commentButton = cell.viewWithTag(1004) as? UIButton,
             let retweetButton = cell.viewWithTag(1005) as? UIButton,
             let profilepic = cell.viewWithTag(1002) as? UIImageView,
             let tweetID = tweets[indexPath.row]["id_str"].string
