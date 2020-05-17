@@ -10,7 +10,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   Swifter:
-    :commit: 480c30bdc59cba8be16d70a32207fe8b31fe1876
+    :commit: 23db8e0ece26b02de9c94dbc5bca1a5710470322
     :git: https://github.com/mattdonnelly/Swifter.git
 
 SPEC CHECKSUMS:
