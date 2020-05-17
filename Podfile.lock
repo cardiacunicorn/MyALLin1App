@@ -1,14 +1,8 @@
 PODS:
-  - STTwitter (0.2.6)
-  - Swifter (2.3.0)
+  - Swifter (2.4.0)
 
 DEPENDENCIES:
-  - STTwitter
   - Swifter (from `https://github.com/mattdonnelly/Swifter.git`)
-
-SPEC REPOS:
-  trunk:
-    - STTwitter
 
 EXTERNAL SOURCES:
   Swifter:
@@ -16,13 +10,12 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   Swifter:
-    :commit: 8889232f27784f6f33cb689c77f233b578124a53
+    :commit: 23db8e0ece26b02de9c94dbc5bca1a5710470322
     :git: https://github.com/mattdonnelly/Swifter.git
 
 SPEC CHECKSUMS:
-  STTwitter: 30ee2f79eff78c3d633a1edc869e97db9c9ead59
-  Swifter: 114bb57823fb21d5ef0451930e9cbc184c3a867a
+  Swifter: 0955a05325dc182fabfb1468305aef887180e0f1
 
-PODFILE CHECKSUM: 54905d053bebb93bb876d461d888be65ad0f9754
+PODFILE CHECKSUM: 858e3f3dedea429fd3c2e2d44ac5f5712fe9e9cc
 
 COCOAPODS: 1.9.1

@@ -6,7 +6,6 @@ target 'MyALLin1' do
   use_frameworks!
 
   # Pods for MyALLin1
-  pod 'STTwitter'
   pod 'Swifter', :git => 'https://github.com/mattdonnelly/Swifter.git'
 
   target 'MyALLin1Tests' do
