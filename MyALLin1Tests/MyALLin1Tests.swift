@@ -7,28 +7,80 @@
 //
 
 import XCTest
+import CoreData
 @testable import MyALLin1
 
 class MyALLin1Tests: XCTestCase {
 
+    var context:NSManagedObjectContext?
+    let sutWeatherLocations = SavedLocationManager()
+    
     override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        context = setUpInMemoryManagedObjectContext()
+        sutWeatherLocations.managedContext = self.context!
+        setUpObjects()
     }
 
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+//    func testPerformanceExample() {
+//        // This is an example of a performance test case.
+//        self.measure {
+//            // Put the code you want to measure the time of here.
+//        }
+//    }
+    
+    func testFetchSavedLocations(){
+        let locations = sutWeatherLocations.fetchSavedLocations()
+        XCTAssertEqual(locations.count, 1)
     }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    
+    func testAddSavedLocation(){
+        let city = City(name: "Brisbane", country: "Australia", longitude: 153.021072, latitude: -27.470125)
+        sutWeatherLocations.addSavedLocation(location: city)
+        let locations = sutWeatherLocations.fetchSavedLocations()
+        XCTAssertEqual(locations.count, 2)
+    }
+    
+    func testDeleteSavedLocation(){
+        var locations = sutWeatherLocations.fetchSavedLocations()
+        let location = locations.first
+        sutWeatherLocations.deleteSavedLocation(savedLocation: location!)
+        locations = sutWeatherLocations.fetchSavedLocations()
+        XCTAssertEqual(locations.count, 0)
+    }
+    
+    func setUpObjects(){
+        if let context = self.context {
+            // Create saved location object
+            let newLocation = SavedLocation(context: context)
+            newLocation.name = "Melbourne"
+            newLocation.country = "Australia"
+            newLocation.longitude = 144.9633179
+            newLocation.latitude = -37.8139992
+        } else {
+            print("Error: Missing Context")
         }
     }
-
+    
+    // Set-up "mock" persistent store and context for use in testing Core Data implementation(s)
+    // Source: https://github.com/lukecsmith/CoreDataUnitTests/blob/master/CoreDataUnitTestsTests/UnitTestHelpers.swift
+    func setUpInMemoryManagedObjectContext() -> NSManagedObjectContext {
+        
+        let managedObjectModel = NSManagedObjectModel.mergedModel(from: [Bundle.main])!
+        let persistentStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: managedObjectModel)
+        do {
+            try persistentStoreCoordinator.addPersistentStore(ofType: NSInMemoryStoreType, configurationName: nil, at: nil, options: nil)
+        } catch {
+            fatalError("Adding in-memory persistent store failed")
+        }
+        
+        let context = NSManagedObjectContext.init(concurrencyType: NSManagedObjectContextConcurrencyType.mainQueueConcurrencyType)
+        context.persistentStoreCoordinator = persistentStoreCoordinator
+        
+        return context
+    }
 }
+
