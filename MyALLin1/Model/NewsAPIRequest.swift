@@ -53,33 +53,36 @@ class NewsAPIRequest {
                 
                 let articles = result["articles"] as! [[String:Any]]
                 
-                for article in articles {
-                    
-                    let title = article["title"] as! String
-                    let imageURLValue = article["urlToImage"] as? String
-                    let contentValue = article["content"] as? String
-                    let url = article["url"] as! String
-                    
-                    // Detect article dominant language
-                    // Only create objects for articles in English
-                    if let language = NSLinguisticTagger.dominantLanguage(for: title) {
-                        if language == "en" {
-                            if let content = contentValue {
-                                if let imageURL = imageURLValue {
-                                    let newsItem = NewsItem(title: title, imageURL: imageURL, content: content, url: url)
-                                    self.newsList.append(newsItem)
+                if articles.count > 0 {
+                
+                    for article in articles {
+                        
+                        let title = article["title"] as! String
+                        let imageURLValue = article["urlToImage"] as? String
+                        let contentValue = article["content"] as? String
+                        let url = article["url"] as! String
+                        
+                        // Detect article dominant language
+                        // Only create objects for articles in English
+                        if let language = NSLinguisticTagger.dominantLanguage(for: title) {
+                            if language == "en" {
+                                if let content = contentValue {
+                                    if let imageURL = imageURLValue {
+                                        let newsItem = NewsItem(title: title, imageURL: imageURL, content: content, url: url)
+                                        self.newsList.append(newsItem)
+                                    } else {
+                                        let newsItem = NewsItem(title: title, imageURL: nil, content: content, url: url)
+                                        self.newsList.append(newsItem)
+                                    }
                                 } else {
-                                    let newsItem = NewsItem(title: title, imageURL: nil, content: content, url: url)
-                                    self.newsList.append(newsItem)
-                                }
-                            } else {
-                                if let imageURL = imageURLValue {
-                                    let newsItem = NewsItem(title: title, imageURL: imageURL, content: nil, url: url)
-                                    self.newsList.append(newsItem)
-                                }
-                                else {
-                                    let newsItem = NewsItem(title: title, imageURL: nil, content: nil, url: url)
-                                    self.newsList.append(newsItem)
+                                    if let imageURL = imageURLValue {
+                                        let newsItem = NewsItem(title: title, imageURL: imageURL, content: nil, url: url)
+                                        self.newsList.append(newsItem)
+                                    }
+                                    else {
+                                        let newsItem = NewsItem(title: title, imageURL: nil, content: nil, url: url)
+                                        self.newsList.append(newsItem)
+                                    }
                                 }
                             }
                         }
