@@ -12,25 +12,33 @@ import Swifter
 class LoginViewController: UIViewController {
     private let consumerKey = "0bxAILPpJ4gORixVzWJfahjRV"
     private let consumerSecret = "zaDny7HAqqirRrFvrQ6SBq0s9eCuYTBAcBRKrMjqR2UmNXEz5G"
-    let swifter = Swifter(consumerKey: "0bxAILPpJ4gORixVzWJfahjRV", consumerSecret: "zaDny7HAqqirRrFvrQ6SBq0s9eCuYTBAcBRKrMjqR2UmNXEz5G")
+    private var swifter = Swifter(consumerKey: "0bxAILPpJ4gORixVzWJfahjRV", consumerSecret: "zaDny7HAqqirRrFvrQ6SBq0s9eCuYTBAcBRKrMjqR2UmNXEz5G")
     private var result: [JSON] = []
+    private var loggedIn = false
     
-    // MARK: - Buttons
+    // MARK: - Button(s)
+    @IBOutlet var button: UIButton!
     
     // MARK: Login Button
     @IBAction func loginButton(_ sender: Any) {
-        authorise()
-    }
-    
-    // MARK: Logout button
-    @IBAction func logoutButton(_ sender: Any) {
-        getTimeline()
+        // Authorise them if credentials don't already exist
+        // If the user is already logged in, assume button has changed state to 'Log Out' and overwrite credentials
+        if (!loggedIn) {
+            authorise()
+        } else {
+            swifter = Swifter(consumerKey: "0bxAILPpJ4gORixVzWJfahjRV", consumerSecret: "zaDny7HAqqirRrFvrQ6SBq0s9eCuYTBAcBRKrMjqR2UmNXEz5G")
+            self.button.setTitle("Log in to Twitter", for: .normal)
+            self.button.setTitleColor(UIColor.white, for: .normal)
+            self.button.backgroundColor = UIColor.systemBlue
+            loggedIn = false
+        }
     }
     
     // MARK: - Functions
     // MARK: ViewController Functions
     override func viewDidLoad() {
         super.viewDidLoad()
+        
     }
     
     func authorise() {
@@ -40,9 +48,9 @@ class LoginViewController: UIViewController {
             presentingFrom: self,
             success: {
                 (token, response) in
-                if let token = token {
-                    print("You are now authorised through Twitter. Token: \(token)")
-                }
+                print("You are now authorised through Twitter")
+                self.loggedIn = true
+                self.getTimeline()
             },
             failure: {
                 (error) in
@@ -53,11 +61,14 @@ class LoginViewController: UIViewController {
     
     func getTimeline() {
         swifter.getHomeTimeline(
-            count: 10,
+            count: 25,
             success: {
                 (json) in
+                self.button.setTitle("Log out", for: .normal)
+                self.button.setTitleColor(UIColor.red, for: .normal)
+                self.button.backgroundColor = UIColor.white
                 self.result = json.array ?? []
-                print("First tweet text: \(json[0]["text"].string)")
+                self.performSegue(withIdentifier: "viewFeed", sender: nil)
             },
             failure: { (error) in
                 print(error)
@@ -66,9 +77,9 @@ class LoginViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Hand the tweets to the next view controller
-        // guard let destination = segue.destination as? TimelineViewController else { return }
-        // destination.tweets = result
+        guard let destination = segue.destination as? FeedViewController else { return }
+        destination.tweets = result
+        destination.swifter = swifter
     }
 }
 

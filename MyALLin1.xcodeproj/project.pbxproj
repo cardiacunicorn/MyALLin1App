@@ -30,6 +30,8 @@
 		B6158A3C24494DA500C74E92 /* DealAPIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6158A3B24494DA500C74E92 /* DealAPIRequest.swift */; };
 		B632FAFE2435E09A0072739E /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B632FAFD2435E09A0072739E /* MapViewController.swift */; };
 		B632FB002435EFEB0072739E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B632FAFF2435EFEB0072739E /* CoreLocation.framework */; };
+		FA01325D245F0F5500FBD3A5 /* TweetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA01325C245F0F5500FBD3A5 /* TweetCell.swift */; };
+		FA251EB0245AFEF8001F1426 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA251EAF245AFEF8001F1426 /* FeedViewController.swift */; };
 		B63B4054244AA0000035467A /* DealsCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63B4053244AA0000035467A /* DealsCategoryViewController.swift */; };
 		B6843F9D244984C400070F52 /* DealCategory+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6843F9B244984C400070F52 /* DealCategory+CoreDataClass.swift */; };
 		B6843F9E244984C400070F52 /* DealCategory+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6843F9C244984C400070F52 /* DealCategory+CoreDataProperties.swift */; };
@@ -100,6 +102,8 @@
 		B6D89B3B245413AB003942BB /* DealsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealsCell.swift; sourceTree = "<group>"; };
 		BEBB07100949738F80F5107A /* Pods-MyALLin1Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyALLin1Tests.release.xcconfig"; path = "Target Support Files/Pods-MyALLin1Tests/Pods-MyALLin1Tests.release.xcconfig"; sourceTree = "<group>"; };
 		C21B14C6190C377A4AE6B23C /* Pods-MyALLin1Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyALLin1Tests.debug.xcconfig"; path = "Target Support Files/Pods-MyALLin1Tests/Pods-MyALLin1Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		FA01325C245F0F5500FBD3A5 /* TweetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetCell.swift; sourceTree = "<group>"; };
+		FA251EAF245AFEF8001F1426 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		FA603B8C2427056E007B47E7 /* MyALLin1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyALLin1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA603B8F2427056E007B47E7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FA603B912427056E007B47E7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -226,6 +230,7 @@
 		FA603BC2242706A7007B47E7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				FA01325C245F0F5500FBD3A5 /* TweetCell.swift */,
 				B6843F9B244984C400070F52 /* DealCategory+CoreDataClass.swift */,
 				B6843F9C244984C400070F52 /* DealCategory+CoreDataProperties.swift */,
 				407E1DED2441086A00F9CA91 /* SavedLocation+CoreDataClass.swift */,
@@ -268,6 +273,7 @@
 			isa = PBXGroup;
 			children = (
 				FA603B932427056E007B47E7 /* LoginViewController.swift */,
+				FA251EAF245AFEF8001F1426 /* FeedViewController.swift */,
 				B632FAFD2435E09A0072739E /* MapViewController.swift */,
 				402E9E502439148B00BB296F /* WeatherViewController.swift */,
 				407E1DE5243F899400F9CA91 /* CitySearchViewController.swift */,
@@ -527,8 +533,10 @@
 				B6158A3A24494CEF00C74E92 /* DealsViewController.swift in Sources */,
 				407E1DF02441086A00F9CA91 /* SavedLocation+CoreDataProperties.swift in Sources */,
 				402E9E512439148B00BB296F /* WeatherViewController.swift in Sources */,
+				FA251EB0245AFEF8001F1426 /* FeedViewController.swift in Sources */,
 				407E1DE4243F7FC000F9CA91 /* CityAPIRequest.swift in Sources */,
 				40745B96244D071B00B968EE /* NewsItem.swift in Sources */,
+				FA01325D245F0F5500FBD3A5 /* TweetCell.swift in Sources */,
 				40745B9A2454DF4100B968EE /* NewsDetailViewController.swift in Sources */,
 				402E9E53243914D300BB296F /* WeatherAPIRequest.swift in Sources */,
 				4002B525245B7DEE00CF06C3 /* DevInfoViewController.swift in Sources */,
