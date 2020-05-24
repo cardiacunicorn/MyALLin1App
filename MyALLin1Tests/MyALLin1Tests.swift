@@ -14,10 +14,12 @@ class MyALLin1Tests: XCTestCase {
 
     var context:NSManagedObjectContext?
     let sutWeatherLocations = SavedLocationManager()
+    let sutDealCategories = DealCategoryManager()
     
     override func setUp() {
         context = setUpInMemoryManagedObjectContext()
         sutWeatherLocations.managedContext = self.context!
+        sutDealCategories.managedContext = self.context!
         setUpObjects()
     }
 
@@ -63,6 +65,23 @@ class MyALLin1Tests: XCTestCase {
         } else {
             print("Error: Missing Context")
         }
+    }
+    
+    // Test adding a new deal category to the database
+    func testAddDealCategory() {
+        sutDealCategories.addDealCategory("Test category")
+        let dealCount = sutDealCategories.getCategoryCount()
+        XCTAssertEqual(dealCount, 1)
+    }
+    
+    // Test deleting deal category from the database
+    func testDeleteDealCategory() {
+        testAddDealCategory()
+        let deals = sutDealCategories.getCategoryList()
+        let deal = deals.first
+        sutDealCategories.deleteDealCategory(dealCategory: deal!)
+        let dealCount = sutDealCategories.getCategoryCount()
+        XCTAssertEqual(dealCount, 0)
     }
     
     // Set-up "mock" persistent store and context for use in testing Core Data implementation(s)

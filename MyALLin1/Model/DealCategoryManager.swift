@@ -16,7 +16,7 @@ class DealCategoryManager {
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     // Reference to the managed context
-    let managedContext: NSManagedObjectContext
+    var managedContext: NSManagedObjectContext
 
     // Array for deal category
     var dealCategoryList = [DealCategory]()
