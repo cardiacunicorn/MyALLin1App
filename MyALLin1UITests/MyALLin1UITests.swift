@@ -51,4 +51,33 @@ class MyALLin1UITests: XCTestCase {
         //Confirm location exists
         XCTAssertTrue(app.otherElements["My Location"].exists)
     }
+    
+    func testAddingDealCategory() {
+        let app = XCUIApplication()
+        app.launch()
+        //tap the deals button
+        app.tabBars.buttons["Deals"].tap()
+        //tap the + button to bring up the deal list screen
+        app.buttons["+"].tap()
+        //tap the + button to bring up the add deal alert box
+        app.navigationBars["eBay Categories"].buttons["Add"].tap()
+        //reference to alert window for adding new category
+        let elementsQuery = app.alerts["Add Category"].scrollViews.otherElements
+        //Type test and tap "add" to add new category
+        elementsQuery.textFields.element.typeText("TEST")
+        elementsQuery.buttons["Add"].tap()
+        //sleep to allow API to retrieve products
+        sleep(5)
+        //Check category is displayed in the category list
+        XCTAssertTrue(app.tables.staticTexts["TEST"].exists)
+    }
+    
+    func testDeletingDealCategory(){
+        let app = XCUIApplication()
+        testAddingDealCategory()
+        let tablesQuery = XCUIApplication().tables
+        tablesQuery/*@START_MENU_TOKEN@*/.staticTexts["TEST"]/*[[".cells.staticTexts[\"TEST\"]",".staticTexts[\"TEST\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.swipeLeft()
+        tablesQuery/*@START_MENU_TOKEN@*/.buttons["trailing0"]/*[[".cells",".buttons[\"Delete\"]",".buttons[\"trailing0\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.tap()
+        XCTAssertFalse(app.tables.staticTexts["TEST"].exists)
+    }
 }
