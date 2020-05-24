@@ -52,7 +52,7 @@ class MyALLin1UITests: XCTestCase {
         XCTAssertTrue(app.otherElements["My Location"].exists)
     }
     
-    func testAddingDealCategory() {
+    func testAddDealCategory() {
         let app = XCUIApplication()
         app.launch()
         //tap the deals button
@@ -72,9 +72,9 @@ class MyALLin1UITests: XCTestCase {
         XCTAssertTrue(app.tables.staticTexts["TEST"].exists)
     }
     
-    func testDeletingDealCategory(){
+    func testDeleteDealCategory(){
         let app = XCUIApplication()
-        testAddingDealCategory()
+        testAddDealCategory()
         let tablesQuery = XCUIApplication().tables
         tablesQuery/*@START_MENU_TOKEN@*/.staticTexts["TEST"]/*[[".cells.staticTexts[\"TEST\"]",".staticTexts[\"TEST\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.swipeLeft()
         tablesQuery/*@START_MENU_TOKEN@*/.buttons["trailing0"]/*[[".cells",".buttons[\"Delete\"]",".buttons[\"trailing0\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.tap()
