@@ -56,18 +56,23 @@ class NewsViewController: UIViewController, UITableViewDataSource, UIPickerViewD
         
         let urlResponse = newsList[indexPath.row].imageURL
 
+        // Check if an image URL string was returned by the API
         if let imageURLString = urlResponse {
-            
-            let imageURL = URL(string: imageURLString)!
-
-            let imageData = try! Data(contentsOf: imageURL)
-
-            image.image = UIImage(data: imageData)
-            
-            noImageLabel.isHidden = true
-            
+            do {
+                // Convert image URL to UIImage to allow display
+                let imageURL = URL(string: imageURLString)!
+                let imageData = try Data(contentsOf: imageURL)
+                image.image = UIImage(data: imageData)
+                noImageLabel.isHidden = true
+            } catch {
+                // If the API returned an invalid image URL, display placeholder
+                image.backgroundColor = UIColor.gray
+                noImageLabel.isHidden = false
+            }
         } else {
+            // If the API did not return an image URL, display placeholder
             image.backgroundColor = UIColor.gray
+            noImageLabel.isHidden = false
         }
         
         if let content = newsList[indexPath.row].content {
