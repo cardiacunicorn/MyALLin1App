@@ -39,6 +39,7 @@ class CitySearchViewController: UIViewController, UITableViewDataSource, UITable
         self.searchResultsTableView.tableHeaderView = searchController.searchBar
     }
     
+    // Set components of table view for displaying list of search suggestions
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if isSearchBarEmpty {
             return 0
@@ -69,6 +70,7 @@ class CitySearchViewController: UIViewController, UITableViewDataSource, UITable
         searchResultsTableView.reloadData()
     }
     
+    // Get list of suggested locations based on user input in search bar
     func filterContentForSearchText(_ searchText: String){
         model.getCities(searchTerm: searchText)
     }

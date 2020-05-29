@@ -8,6 +8,7 @@
 
 import Foundation
 
+// Protocol for reloading UI in view controller
 protocol Refresh {
     func updateUI()
 }
@@ -44,6 +45,7 @@ class WeatherAPIRequest {
                 print(error)
             }
             else {
+                // Parse JSON response from the API
                 var parsedResult: Any! = nil
                 do {
                     parsedResult = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.allowFragments)
@@ -77,7 +79,7 @@ class WeatherAPIRequest {
 
                 }
             }
-            
+            // Update UI in view controller once response has been received and processed
             DispatchQueue.main.async {
                 self.delegate?.updateUI()
             }
