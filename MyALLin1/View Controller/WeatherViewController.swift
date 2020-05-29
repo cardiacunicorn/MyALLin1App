@@ -15,15 +15,15 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate, UITabl
    @IBOutlet weak var weatherTableView: UITableView!
     
     var locationManager:CLLocationManager?
-    var latestLongitude:String?
-    var latestLatitude:String?
     
     var weatherModel = WeatherAPIRequest.shared
     var cityModel = CityAPIRequest.shared
     var savedLocationManager = SavedLocationManager()
     
     var savedLocations:[SavedLocation]?
-    
+    var latestLongitude:String?
+    var latestLatitude:String?
+
     var weatherList:[Weather] {
         get { return weatherModel.weatherList }
         set { weatherModel.weatherList = newValue }
@@ -52,6 +52,8 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate, UITabl
         locationIcon.image = locationIcon.image?.withRenderingMode(.alwaysTemplate)
         locationIcon.tintColor = UIColor.white
         
+        // Check if weather information is of current location
+        // If yes, display appropriate icon for that location
         if weatherList[indexPath.row].isCurrentLocation {
             locationIcon.isHidden = false
         } else {
@@ -93,6 +95,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate, UITabl
         getSavedLocations()
     }
     
+    // Get user's current location
     func getCurrentLocation(){
         locationManager = CLLocationManager()
         locationManager?.requestAlwaysAuthorization()

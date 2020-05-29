@@ -8,6 +8,7 @@
 
 import Foundation
 
+// Protocol for reloading UI in view controller
 protocol RefreshResults {
     func updateUI()
 }
@@ -46,6 +47,7 @@ class CityAPIRequest {
                 print(error)
             }
             else {
+                // Parse JSON response from the API
                 var parsedResult: Any! = nil
                 do {
                     parsedResult = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.allowFragments)
@@ -55,19 +57,21 @@ class CityAPIRequest {
                 
                 let data = result["data"] as! [[String:Any]]
                 
+                // Get city name, country, longitude and latitude
                 for city in data {
                     let cityName = city["city"] as! String
                     let country = city["country"] as! String
                     let longitude = city["longitude"] as! Double
                     let latitude = city["latitude"] as! Double
 
+                    // Create city object
                     let city = City(name: cityName, country: country, longitude: longitude, latitude: latitude)
                     
                     self.searchResults.append(city)
                 }
                 
             }
-            
+            // Update UI in view controller once response has been received and processed
             DispatchQueue.main.async {
                 self.delegate?.updateUI()
             }

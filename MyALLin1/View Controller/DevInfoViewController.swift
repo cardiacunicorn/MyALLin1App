@@ -15,6 +15,7 @@ class DevInfoViewController: UIViewController, UITableViewDataSource {
     
     var currentVersion:ReleaseNotes?
     
+    // Set components of table view for displaying list of release notes for current version
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return currentVersion!.notes.count
     }
@@ -34,6 +35,7 @@ class DevInfoViewController: UIViewController, UITableViewDataSource {
         super.viewDidLoad()
         notesTableView.dataSource = self
         
+        // Specify release notes for current version
         let notes = ["User can sign-in to their Twitter account and view their timeline", "User can view nearby cafes on a map", "User can view weather information for current location and saved locations", "User can view eBay deals for selected search terms", "User can view latest news for selected categories", "User can view development information for latest release", "User can submit queries"]
         
         currentVersion = ReleaseNotes(version: 1.0, notes: notes)

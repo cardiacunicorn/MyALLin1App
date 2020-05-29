@@ -32,7 +32,8 @@ class QueriesViewController: UIViewController {
     }
     
     func composeMail(){
-        
+        // Check if user has mail application configured
+        // If yes, set mail components and display pop-up
         if MFMailComposeViewController.canSendMail(){
         
             let mail = MFMailComposeViewController()
@@ -44,6 +45,8 @@ class QueriesViewController: UIViewController {
             
             self.present(mail, animated: true, completion: nil)
         } else {
+            // If mail application is not configured, display
+            // appropriate message to the user
             message.text = "Query submission unavailable"
         }
     }
@@ -53,12 +56,15 @@ extension QueriesViewController: MFMailComposeViewControllerDelegate {
     
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         
+        // Set display for when an error occurs
         if let _ = error {
             message.text = "An error has occurred"
             retryButton.setTitle("Try again?", for: .normal)
             controller.dismiss(animated: true)
         }
         
+        // Set display for when email pop-up is dismissed, according
+        // to whether a query has been sent, cancelled, saved, etc
         switch result {
         case .cancelled:
             message.text = "Query submission cancelled"
