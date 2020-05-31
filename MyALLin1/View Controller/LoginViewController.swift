@@ -61,7 +61,7 @@ class LoginViewController: UIViewController {
     
     func getTimeline() {
         swifter.getHomeTimeline(
-            count: 25,
+            count: 100,
             success: {
                 (json) in
                 self.button.setTitle("Log out", for: .normal)

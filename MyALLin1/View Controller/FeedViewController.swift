@@ -151,7 +151,7 @@ class FeedViewController: UITableViewController {
                 if (tweetID == "None") {
                     self.swifter.postTweet(status: tweetText)
                 } else {
-                    self.swifter.postTweet(status: tweetText, inReplyToStatusID: tweetID)
+                    self.swifter.postTweet(status: tweetText, inReplyToStatusID: tweetID, autoPopulateReplyMetadata: true)
                 }
             }
         }

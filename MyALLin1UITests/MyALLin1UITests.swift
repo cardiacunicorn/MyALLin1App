@@ -9,46 +9,73 @@
 import XCTest
 
 class MyALLin1UITests: XCTestCase {
-
+    
+    var app = XCUIApplication()
+    
     override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-
-        // In UI tests it is usually best to stop immediately when a failure occurs.
+        super.setUp()
         continueAfterFailure = false
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
+        app.launch()
     }
 
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
-
-    func testExample() {
-        // UI tests must launch the application that they test.
-        let app = XCUIApplication()
-        app.launch()
-
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testLaunchPerformance() {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, *) {
-            // This measures how long it takes to launch your application.
-            measure(metrics: [XCTOSSignpostMetric.applicationLaunch]) {
-                XCUIApplication().launch()
-            }
-        }
-    }
     
     func testMapLocation () {
-        let app = XCUIApplication()
-        app.launch()
         //Tap the map button
         XCUIApplication().tabBars.buttons["Map"].tap()
+        
+        //Access springbard to interact with location services permissions prompt
+        let springboard = XCUIApplication(bundleIdentifier: "com.apple.springboard")
+        let allowBtn = springboard.buttons["Allow Once"]
+        if allowBtn.exists {
+            allowBtn.tap()
+        }
+        
         //Tap the location of user
         XCUIApplication().otherElements["My Location"].tap()
         //Confirm location exists
         XCTAssertTrue(app.otherElements["My Location"].exists)
+    }
+    
+    func testAddDealCategory() {
+        //tap the deals button
+        app.tabBars.buttons["Deals"].tap()
+        //tap the + button to bring up the deal list screen
+        app.buttons["+"].tap()
+        //tap the + button to bring up the add deal alert box
+        app.navigationBars["eBay Categories"].buttons["Add"].tap()
+        //reference to alert window for adding new category
+        let elementsQuery = app.alerts["Add Category"].scrollViews.otherElements
+        //Type test and tap "add" to add new category
+        elementsQuery.textFields.element.typeText("TEST")
+        elementsQuery.buttons["Add"].tap()
+        //sleep to allow API to retrieve products
+        sleep(5)
+        //Check category is displayed in the category list
+        XCTAssertTrue(app.tables.staticTexts["TEST"].exists)
+    }
+    
+    func testDeleteDealCategory(){
+        //tap the deals button
+        app.tabBars.buttons["Deals"].tap()
+        //tap the + button to bring up the deal list screen
+        app.buttons["+"].tap()
+        //tap the + button to bring up the add deal alert box
+        app.navigationBars["eBay Categories"].buttons["Add"].tap()
+        //reference to alert window for adding new category
+        let elementsQuery = app.alerts["Add Category"].scrollViews.otherElements
+        //add a new category to delete
+        elementsQuery.textFields.element.typeText("TODELETE")
+        elementsQuery.buttons["Add"].tap()
+        //sleep to allow API to retrieve products
+        sleep(5)
+        let tablesQuery = XCUIApplication().tables
+        //find the category we just added and delete it
+        tablesQuery.staticTexts["TODELETE"].swipeLeft()
+        tablesQuery/*@START_MENU_TOKEN@*/.buttons["trailing0"]/*[[".cells",".buttons[\"Delete\"]",".buttons[\"trailing0\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.tap()
+        //confirm category has been removed from table
+        XCTAssertFalse(app.tables.staticTexts["TODELETE"].exists)
     }
 }

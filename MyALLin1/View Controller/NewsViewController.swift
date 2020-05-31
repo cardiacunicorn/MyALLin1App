@@ -20,25 +20,10 @@ class NewsViewController: UIViewController, UITableViewDataSource, UIPickerViewD
         set { model.newsList = newValue }
     }
     
+    // Specify list of categories that can be selected by the user as an array
     let categoryArray:[String] = ["general", "business", "entertainment", "health", "science", "sports", "technology"]
     
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return categoryArray.count
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return categoryArray[row]
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        categoryTextField.text = categoryArray[row]
-        model.getNews(category: categoryArray[row])
-    }
-    
+    // Set components of table view for displaying list of news items
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return newsList.count
     }
@@ -56,23 +41,30 @@ class NewsViewController: UIViewController, UITableViewDataSource, UIPickerViewD
         
         let urlResponse = newsList[indexPath.row].imageURL
 
+        // Check if an image URL string was returned by the API
         if let imageURLString = urlResponse {
-            
-            let imageURL = URL(string: imageURLString)!
-
-            let imageData = try! Data(contentsOf: imageURL)
-
-            image.image = UIImage(data: imageData)
-            
-            noImageLabel.isHidden = true
-            
+            do {
+                // Convert image URL to UIImage to allow display
+                let imageURL = URL(string: imageURLString)!
+                let imageData = try Data(contentsOf: imageURL)
+                image.image = UIImage(data: imageData)
+                noImageLabel.isHidden = true
+            } catch {
+                // If the API returned an invalid image URL, display placeholder
+                image.backgroundColor = UIColor.gray
+                noImageLabel.isHidden = false
+            }
         } else {
+            // If the API did not return an image URL, display placeholder
             image.backgroundColor = UIColor.gray
+            noImageLabel.isHidden = false
         }
         
+        // Check if content description was returned by the API
         if let content = newsList[indexPath.row].content {
             contentLabel.text = content
         } else {
+            // If the API did not return content description, display placeholder
             contentLabel.text = "No description available"
         }
         
@@ -94,6 +86,7 @@ class NewsViewController: UIViewController, UITableViewDataSource, UIPickerViewD
         newsTableView.reloadData()
     }
     
+    // Initialise picker view for selecting news category
     func setUpCategoryPicker(){
         let categoryPicker = UIPickerView()
         categoryPicker.delegate = self
@@ -110,6 +103,25 @@ class NewsViewController: UIViewController, UITableViewDataSource, UIPickerViewD
         
         categoryTextField.inputAccessoryView = toolBar
         categoryTextField.inputView = categoryPicker
+    }
+    
+    // Set components of picker view
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return categoryArray.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return categoryArray[row]
+    }
+    
+    // Get news based on the category selected
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        categoryTextField.text = categoryArray[row]
+        model.getNews(category: categoryArray[row])
     }
     
     // Allow picker view to be dismissed

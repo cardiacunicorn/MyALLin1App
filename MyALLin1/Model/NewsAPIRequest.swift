@@ -8,6 +8,7 @@
 
 import Foundation
 
+// Protocol for reloading UI in view controller
 protocol RefreshNews {
     func updateUI()
 }
@@ -44,6 +45,7 @@ class NewsAPIRequest {
                 print(error)
             }
             else {
+                // Parse JSON response from the API
                 var parsedResult: Any! = nil
                 do {
                     parsedResult = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.allowFragments)
@@ -56,7 +58,7 @@ class NewsAPIRequest {
                 if articles.count > 0 {
                 
                     for article in articles {
-                        
+                        // Get title, image URL, content description, and article URL
                         let title = article["title"] as! String
                         let imageURLValue = article["urlToImage"] as? String
                         let contentValue = article["content"] as? String
@@ -66,6 +68,8 @@ class NewsAPIRequest {
                         // Only create objects for articles in English
                         if let language = NSLinguisticTagger.dominantLanguage(for: title) {
                             if language == "en" {
+                                // Handle cases where image URL and/or content
+                                // description are null and create news object
                                 if let content = contentValue {
                                     if let imageURL = imageURLValue {
                                         let newsItem = NewsItem(title: title, imageURL: imageURL, content: content, url: url)
@@ -89,7 +93,7 @@ class NewsAPIRequest {
                     }
                 }
             }
-            
+            // Update UI in view controller once response has been received and processed
             DispatchQueue.main.async {
                 self.delegate?.updateUI()
             }

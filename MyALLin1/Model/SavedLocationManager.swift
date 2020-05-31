@@ -16,6 +16,7 @@ class SavedLocationManager {
     
     var managedContext: NSManagedObjectContext
     
+    // Fetch all saved locations from the database
     func fetchSavedLocations() -> [SavedLocation] {
         
         var locationsResult:[SavedLocation] = []
@@ -27,14 +28,11 @@ class SavedLocationManager {
         } catch {
             print()
         }
-        
         return locationsResult
-        
     }
     
+    // Add a location to the database from selected city search result
     func addSavedLocation(location: City){
-        
-        print(location)
         
         let newLocation = NSEntityDescription.insertNewObject(forEntityName: "SavedLocation", into: managedContext) as! SavedLocation
         
@@ -46,6 +44,7 @@ class SavedLocationManager {
         appDelegate.saveContext()
     }
     
+    // Delete a saved location from the database
     func deleteSavedLocation(savedLocation: SavedLocation){
         managedContext.delete(savedLocation)
         appDelegate.saveContext()
